@@ -1,0 +1,118 @@
+// {
+//   "files": [],
+//   "references": [
+//     { "path": "./tsconfig.app.json" },
+//     { "path": "./tsconfig.node.json" }
+//   ]
+// }
+
+{
+  "compilerOptions": {
+    // ---------- Code Generation & Target ----------
+    "target": "ES2020",
+    // ✅ Tells TypeScript to compile modern JS syntax down to ECMAScript 2020.
+    // You’ll get features like optional chaining, nullish coalescing, etc.
+    // (Vite handles further transpilation if needed via esbuild.)
+
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    // ✅ Defines the built-in libraries available in your environment.
+    // - ES2020 → modern JS APIs
+    // - DOM → browser objects (document, window, etc.)
+    // - DOM.Iterable → allows iterating over DOM collections like NodeList
+
+    // ---------- Module System ----------
+    "module": "ESNext",
+    // ✅ Output ES modules (import/export syntax) — ideal for modern bundlers like Vite.
+
+    "moduleResolution": "bundler",
+    // ✅ Optimized for bundlers (Vite, webpack, etc.).
+    // TypeScript will resolve imports similarly to how the bundler does,
+    // supporting conditions like `"exports"` in package.json.
+
+    "allowImportingTsExtensions": true,
+    // ✅ Allows importing files with explicit `.ts`/`.tsx` extensions
+    // e.g., `import { x } from "./file.ts"`
+
+    "resolveJsonModule": true,
+    // ✅ Lets you `import data from './data.json'` directly.
+    // TypeScript treats `.json` files as modules.
+
+    // ---------- Type Checking & Strictness ----------
+    "skipLibCheck": true,
+    // ⚡ Skips type checking of declaration files (.d.ts).
+    // Speeds up build time; safe if you trust your dependencies.
+
+    "strict": true,
+    // ✅ Enables all strict type-checking options.
+    // (Strict null checks, implicit any prevention, etc.)
+
+    "noUnusedLocals": false,
+    // ❌ Disabled — TS won’t warn about unused local variables.
+    // Set to `true` to clean up dead code.
+
+    "noUnusedParameters": false,
+    // ❌ Disabled — allows unused function parameters.
+    // Good during development when you’re scaffolding APIs.
+
+    "noFallthroughCasesInSwitch": true,
+    // ✅ Prevents accidental fall-through between switch cases without a `break`.
+
+    "forceConsistentCasingInFileNames": true,
+    // ✅ Ensures import paths match actual file casing.
+    // Prevents issues on case-sensitive file systems (e.g., Linux).
+
+    "isolatedModules": true,
+    // ✅ Ensures each file can be safely transpiled in isolation.
+    // Required for Vite (and other ESM bundlers) to work smoothly.
+
+    "noEmit": true,
+    // ✅ TypeScript won’t output `.js` files —
+    // since Vite handles bundling/transpilation instead.
+
+    // ---------- JS / JSX Handling ----------
+    "jsx": "react-jsx",
+    // ✅ Enables the new JSX transform introduced in React 17+
+    // No need to `import React from 'react'` at the top of files.
+
+    "allowJs": true,
+    // ✅ Allows JavaScript (.js, .jsx) files in your project.
+    // Useful for gradual migration from JS → TS.
+
+    "checkJs": false,
+    // ❌ Disables type checking inside JS files.
+    // Set to `true` only if you want TypeScript to type-check JS files too.
+
+    "allowSyntheticDefaultImports": true,
+    // ✅ Allows default imports from modules that only export using `export =`.
+    // Helps when importing CommonJS modules into ESM code.
+
+    "types": ["vite/client", "node"],
+    // ✅ Adds type definitions globally for:
+    // - Vite (import.meta.env)
+    // - Node.js (fs, path, etc.)
+
+    // ---------- Module Aliases ----------
+    "baseUrl": ".",
+    // ✅ Sets the base directory for non-relative imports.
+    // Required when using `paths` mappings below.
+
+    "paths": {
+      "@/*": ["src/*"],
+      // "@icons/*": ["src/Components/Icons/*"]
+      "@components/*": ["src/components/*"],
+    }
+    // ✅ Creates import aliases.
+    // Example:
+    // import MyComponent from "@/components/MyComponent";
+    // import ArrowIcon from "@icons/ArrowIcon";
+  },
+
+  // ---------- Files to Include ----------
+  "include": ["src/**/*", "vite.config.ts"],
+  // ✅ Specifies which files TypeScript should process.
+  // Everything inside /src and the Vite config file are included.
+
+  // ---------- Files to Exclude ----------
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx", "**/*.test.js", "**/*.test.jsx"]
+  // ✅ Excludes test files, build output, and dependencies from type-checking.
+}

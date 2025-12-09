@@ -1,0 +1,221 @@
+.ta-modal .ant-modal-content {
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  padding: 0;
+  box-shadow: 0 30px 60px -24px rgba(15, 23, 42, 0.35);
+}
+
+.ta-modal .ant-modal-header {
+  margin: 0;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 1rem 1rem 0 0;
+  background: transparent;
+}
+
+.ta-modal .ant-modal-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ta-modal .ant-modal-close {
+  top: 20px;
+  inset-inline-end: 20px;
+  color: #94a3b8;
+}
+
+.ta-modal .ant-modal-close:hover {
+  color: #1f2937;
+}
+
+.ta-modal .ant-modal-body {
+  padding: 24px;
+  font-size: 0.9375rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.ta-modal .ant-modal-footer {
+  margin: 0;
+  padding: 16px 24px 24px;
+  border-top: 1px solid #e5e7eb;
+  background: transparent;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.ta-modal .ant-btn {
+  border-radius: 0.75rem;
+  font-weight: 500;
+  height: 2.5rem;
+  padding-inline: 1.25rem;
+}
+
+.ta-modal .ant-btn-primary {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.ta-modal .ant-btn-primary:hover,
+.ta-modal .ant-btn-primary:focus {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #ffffff;
+}
+
+.ta-modal .ant-btn-default {
+  border-color: #e2e8f0;
+  color: #475569;
+  background-color: transparent;
+}
+
+.ta-modal .ant-btn-default:hover,
+.ta-modal .ant-btn-default:focus {
+  border-color: #2563eb;
+  color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.ta-modal .ant-modal-confirm-body {
+  padding: 24px 24px 0;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.ta-modal .ant-modal-confirm-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ta-modal .ant-modal-confirm-content {
+  margin-top: 0.25rem;
+  color: #4b5563;
+}
+
+.ta-modal .ant-modal-confirm-btns {
+  margin: 0;
+  padding: 16px 24px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.ta-modal__icon {
+  font-size: 1.75rem;
+}
+
+.ta-modal--success .ta-modal__icon {
+  color: #10b981;
+}
+
+.ta-modal--danger .ta-modal__icon {
+  color: #ef4444;
+}
+
+.ta-modal--warning .ta-modal__icon {
+  color: #f97316;
+}
+
+.ta-modal--info .ta-modal__icon {
+  color: #3b82f6;
+}
+
+.ta-modal--success .ant-btn-primary {
+  background-color: #10b981;
+  border-color: #10b981;
+}
+
+.ta-modal--success .ant-btn-primary:hover,
+.ta-modal--success .ant-btn-primary:focus {
+  background-color: #059669;
+  border-color: #059669;
+}
+
+.ta-modal--danger .ant-btn-primary {
+  background-color: #ef4444;
+  border-color: #ef4444;
+}
+
+.ta-modal--danger .ant-btn-primary:hover,
+.ta-modal--danger .ant-btn-primary:focus {
+  background-color: #dc2626;
+  border-color: #dc2626;
+}
+
+.ta-modal--warning .ant-btn-primary {
+  background-color: #f97316;
+  border-color: #f97316;
+}
+
+.ta-modal--warning .ant-btn-primary:hover,
+.ta-modal--warning .ant-btn-primary:focus {
+  background-color: #ea580c;
+  border-color: #ea580c;
+}
+
+.ta-modal--info .ant-btn-primary {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.ta-modal--info .ant-btn-primary:hover,
+.ta-modal--info .ant-btn-primary:focus {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.dark .ta-modal .ant-modal-content {
+  background-color: rgba(17, 24, 39, 0.96);
+  border-color: rgba(148, 163, 184, 0.24);
+  box-shadow: 0 30px 60px -24px rgba(15, 23, 42, 0.6);
+}
+
+.dark .ta-modal .ant-modal-header {
+  border-bottom-color: rgba(148, 163, 184, 0.18);
+}
+
+.dark .ta-modal .ant-modal-title {
+  color: rgba(248, 250, 252, 0.92);
+}
+
+.dark .ta-modal .ant-modal-body {
+  color: rgba(226, 232, 240, 0.82);
+}
+
+.dark .ta-modal .ant-modal-footer {
+  border-top-color: rgba(148, 163, 184, 0.18);
+}
+
+.dark .ta-modal .ant-modal-close {
+  color: rgba(148, 163, 184, 0.75);
+}
+
+.dark .ta-modal .ant-modal-close:hover {
+  color: rgba(248, 250, 252, 0.9);
+}
+
+.dark .ta-modal .ant-btn-default {
+  border-color: rgba(148, 163, 184, 0.35);
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.dark .ta-modal .ant-btn-default:hover,
+.dark .ta-modal .ant-btn-default:focus {
+  border-color: #60a5fa;
+  color: #60a5fa;
+  background-color: rgba(37, 99, 235, 0.12);
+}
+
+.dark .ta-modal .ant-modal-confirm-title {
+  color: rgba(248, 250, 252, 0.92);
+}
+
+.dark .ta-modal .ant-modal-confirm-content {
+  color: rgba(226, 232, 240, 0.72);
+}
