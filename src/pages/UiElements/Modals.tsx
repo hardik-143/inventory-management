@@ -156,44 +156,41 @@ export default function Modals() {
             key={variant}
             isOpen={isOpen(key)}
             onClose={closeModal}
+            showCloseButton={false}
             className="mx-4 max-w-md shadow-theme-xl"
           >
-            <div className="p-6 sm:p-7">
-              <div
-                className={`flex items-start gap-4 rounded-xl p-4 ${
-                  statusVariantStyles[
-                    variant as keyof typeof statusVariantStyles
-                  ]
-                }`}
-              >
-                <span className="mt-0.5">
-                  <Icon className="size-6" />
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white/90">
-                    {variant === "success" && "Order fulfilled"}
-                    {variant === "danger" && "Delete record?"}
-                    {variant === "warning" && "Pause subscription?"}
-                    {variant === "info" && "Heads-up"}
-                  </h3>
-                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                    {variant === "success" &&
-                      "The order status will be updated and a confirmation email is dispatched to the customer."}
-                    {variant === "danger" &&
-                      "Removing this record permanently deletes any associated analytics and cannot be undone."}
-                    {variant === "warning" &&
-                      "Customers lose access immediately. You can resume the subscription whenever you need."}
-                    {variant === "info" &&
-                      "Share quick wins and keep updates flowing so your team stays aligned on priorities."}
-                  </p>
-                  <div className="mt-6 flex items-center gap-3">
-                    <Button onClick={closeModal}>
-                      {variant === "danger" ? "Confirm" : "Continue"}
-                    </Button>
-                    <Button variant="outline" onClick={closeModal}>
-                      Cancel
-                    </Button>
-                  </div>
+            <div
+              className={`flex items-start gap-4 rounded-xl p-4 ${
+                statusVariantStyles[variant as keyof typeof statusVariantStyles]
+              }`}
+            >
+              <span className="mt-0.5">
+                <Icon className="size-6" />
+              </span>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white/90">
+                  {variant === "success" && "Order fulfilled"}
+                  {variant === "danger" && "Delete record?"}
+                  {variant === "warning" && "Pause subscription?"}
+                  {variant === "info" && "Heads-up"}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                  {variant === "success" &&
+                    "The order status will be updated and a confirmation email is dispatched to the customer."}
+                  {variant === "danger" &&
+                    "Removing this record permanently deletes any associated analytics and cannot be undone."}
+                  {variant === "warning" &&
+                    "Customers lose access immediately. You can resume the subscription whenever you need."}
+                  {variant === "info" &&
+                    "Share quick wins and keep updates flowing so your team stays aligned on priorities."}
+                </p>
+                <div className="mt-6 flex items-center gap-3">
+                  <Button onClick={closeModal}>
+                    {variant === "danger" ? "Confirm" : "Continue"}
+                  </Button>
+                  <Button variant="outline" onClick={closeModal}>
+                    Cancel
+                  </Button>
                 </div>
               </div>
             </div>
