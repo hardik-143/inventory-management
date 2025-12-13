@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 interface ButtonProps {
   children: ReactNode; // Button text or content
   size?: "sm" | "md" | "lg"; // Button size
-  variant?: "primary" | "outline" | "primaryOutlineLight" | "primaryOutline" | "danger"; // Button variant
+  variant?: "primary" | "outline" | "primaryOutlineLight" | "primaryOutline"; // Button variant
   startIcon?: ReactNode; // Icon before the text
   endIcon?: ReactNode; // Icon after the text
   onClick?: () => void; // Click handler
@@ -40,8 +40,6 @@ const Button: React.FC<ButtonProps> = ({
       "bg-transparent !text-brand-500 border border-brand-500 enabled:hover:bg-brand-50 dark:bg-gray-800 disabled:text-brand-300 disabled:ring-brand-200",
     primaryOutline:
       "bg-transparent !text-brand-500 border border-brand-500 enabled:hover:bg-brand-500 enabled:hover:!text-white disabled:text-brand-300 disabled:ring-brand-200",
-    danger:
-      "bg-transparent text-error-500 border border-error-500 enabled:hover:bg-error-500 enabled:hover:!text-white disabled:text-error-300 disabled:ring-error-200",
   };
 
   return (
