@@ -35,7 +35,7 @@ export default function InventoryCustomers() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <Button
               size="sm"
-              variant="primaryOutlineLight"
+              variant="primary"
               startIcon={<Plus className="size-5" />}
               onClick={() => navigate("/inventory/customers/add")}
             >

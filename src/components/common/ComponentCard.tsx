@@ -26,7 +26,7 @@ const ComponentCard = ({
         <div
           className={`px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex flex-wrap gap-y-4 justify-between ${headerClassName}`}
         >
-          <div className="flex items-center">
+          <div className="flex items-start flex-col justify-center">
             <h3 className="text-2xl mb-0! font-medium text-gray-800 dark:text-white/90">
               {title}
             </h3>
