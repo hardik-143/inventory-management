@@ -144,7 +144,6 @@ export default function InventoryProductCategories() {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="px-3 py-2"
                         startIcon={<Pencil className="size-4" />}
                       >
                         Edit
@@ -152,7 +151,6 @@ export default function InventoryProductCategories() {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="px-3 py-2 text-error-500 hover:text-error-600"
                         startIcon={<Trash className="size-4" />}
                       >
                         Delete

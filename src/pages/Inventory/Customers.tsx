@@ -14,14 +14,7 @@ import {
 import { Dropdown } from "@/components/ui/dropdown/Dropdown";
 import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
 import { customers } from "@/data/inventory";
-import {
-  DollarSignIcon,
-  Ellipsis,
-  Eye,
-  Pencil,
-  Plus,
-  Trash,
-} from "lucide-react";
+import { Ellipsis, Eye, Pencil, Plus, Trash } from "lucide-react";
 
 export default function InventoryCustomers() {
   const navigate = useNavigate();
@@ -42,7 +35,8 @@ export default function InventoryCustomers() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <Button
               size="sm"
-              startIcon={<Plus className="size-4" />}
+              variant="primaryOutlineLight"
+              startIcon={<Plus className="size-5" />}
               onClick={() => navigate("/inventory/customers/add")}
             >
               Add Customer
