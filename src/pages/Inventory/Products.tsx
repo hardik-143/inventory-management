@@ -27,7 +27,8 @@ import {
   defaultSpecifications,
 } from "@/data/inventory";
 import type { SpecificationRow } from "@/data/inventory";
-import { PlusIcon, HorizontaLDots, PencilIcon, TrashBinIcon } from "@/icons";
+
+import { Ellipsis, Eye, Pencil, Plus, Trash } from "lucide-react";
 
 interface QuickAddState {
   name: string;
@@ -128,12 +129,14 @@ export default function InventoryProducts() {
         description="Manage products, quick add items, and access product details."
       />
       <PageBreadcrumb pageTitle="Products" />
-      <ComponentCard title="Products">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-3">
+      <ComponentCard
+        title="Products"
+        headerClassName="py-3!"
+        extraHeaderContent={
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <Button
               size="sm"
-              startIcon={<PlusIcon className="size-4" />}
+              startIcon={<Plus className="size-5" />}
               onClick={() => navigate("/inventory/products/add")}
             >
               Add Product
@@ -141,13 +144,14 @@ export default function InventoryProducts() {
             <Button
               size="sm"
               variant="outline"
-              startIcon={<PlusIcon className="size-4" />}
+              startIcon={<Plus className="size-5" />}
               onClick={() => navigate("/inventory/products/quick-add")}
             >
               Add Quick Product
             </Button>
           </div>
-        </div>
+        }
+      >
         <div className="max-w-full overflow-x-auto">
           <Table>
             <TableHeader className="border-b border-gray-100 dark:border-white/5">
@@ -210,7 +214,7 @@ export default function InventoryProducts() {
                         setAnchorEl(isActive ? null : target);
                       }}
                     >
-                      <HorizontaLDots className="size-5" />
+                      <Ellipsis className="size-5" />
                     </button>
                     <Dropdown
                       isOpen={openDropdownId === product.id}
@@ -229,7 +233,9 @@ export default function InventoryProducts() {
                             setOpenDropdownId(null);
                             setAnchorEl(null);
                           }}
+                          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-300"
                         >
+                          <Eye className="size-4" />
                           View Details
                         </DropdownItem>
                         <DropdownItem
@@ -239,7 +245,7 @@ export default function InventoryProducts() {
                           }}
                           className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-300"
                         >
-                          <PencilIcon className="size-4" /> Edit
+                          <Pencil className="size-4" /> Edit
                         </DropdownItem>
                         <DropdownItem
                           onClick={() => {
@@ -248,7 +254,7 @@ export default function InventoryProducts() {
                           }}
                           className="flex items-center gap-2 text-error-500 hover:text-error-600"
                         >
-                          <TrashBinIcon className="size-4" /> Delete
+                          <Trash className="size-4" /> Delete
                         </DropdownItem>
                       </div>
                     </Dropdown>
@@ -400,7 +406,7 @@ export default function InventoryProducts() {
                 <Button
                   size="sm"
                   variant="outline"
-                  startIcon={<PlusIcon className="size-4" />}
+                  startIcon={<Plus className="size-4" />}
                   onClick={handleAddSpecRow}
                 >
                   Add Row

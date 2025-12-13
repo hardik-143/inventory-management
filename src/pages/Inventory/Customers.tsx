@@ -14,7 +14,14 @@ import {
 import { Dropdown } from "@/components/ui/dropdown/Dropdown";
 import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
 import { customers } from "@/data/inventory";
-import { HorizontaLDots, PencilIcon, EyeIcon, PlusIcon } from "@/icons";
+import {
+  DollarSignIcon,
+  Ellipsis,
+  Eye,
+  Pencil,
+  Plus,
+  Trash,
+} from "lucide-react";
 
 export default function InventoryCustomers() {
   const navigate = useNavigate();
@@ -28,16 +35,21 @@ export default function InventoryCustomers() {
         description="Manage customer records and record payments for inventory."
       />
       <PageBreadcrumb pageTitle="Customers" />
-      <ComponentCard title="Customers">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <Button
-            size="sm"
-            startIcon={<PlusIcon className="size-4" />}
-            onClick={() => navigate("/inventory/customers/add")}
-          >
-            Add Customer
-          </Button>
-        </div>
+      <ComponentCard
+        title="Customers"
+        headerClassName="py-3!"
+        extraHeaderContent={
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <Button
+              size="sm"
+              startIcon={<Plus className="size-4" />}
+              onClick={() => navigate("/inventory/customers/add")}
+            >
+              Add Customer
+            </Button>
+          </div>
+        }
+      >
         <div className="max-w-full overflow-x-auto">
           <Table>
             <TableHeader className="border-b border-gray-100 dark:border-white/5">
@@ -115,7 +127,7 @@ export default function InventoryCustomers() {
                         );
                       }}
                     >
-                      <HorizontaLDots className="size-5" />
+                      <Ellipsis className="size-5" />
                     </button>
                     <Dropdown
                       isOpen={openDropdownId === customer.id}
@@ -131,25 +143,25 @@ export default function InventoryCustomers() {
                           className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-300"
                           onClick={() => setOpenDropdownId(null)}
                         >
-                          <PencilIcon className="size-4" /> Edit
+                          <Pencil className="size-4" /> Edit
                         </DropdownItem>
                         <DropdownItem
                           className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-300"
                           onClick={() => setOpenDropdownId(null)}
                         >
-                          <EyeIcon className="size-4" /> View
+                          <Eye className="size-4" /> View
                         </DropdownItem>
                         <DropdownItem
                           className="flex items-center gap-2 text-brand-500 hover:text-brand-600"
                           onClick={() => setOpenDropdownId(null)}
                         >
-                          Add Receive Payment
+                          <Pencil className="size-4" /> Add Receive Payment
                         </DropdownItem>
                         <DropdownItem
                           className="flex items-center gap-2 text-error-500 hover:text-error-600"
                           onClick={() => setOpenDropdownId(null)}
                         >
-                          Delete
+                          <Trash className="size-4" /> Delete
                         </DropdownItem>
                       </div>
                     </Dropdown>

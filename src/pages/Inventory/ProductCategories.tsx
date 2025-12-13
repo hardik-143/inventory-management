@@ -15,8 +15,9 @@ import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
 import FileInput from "@/components/form/input/FileInput";
 import Form from "@/components/form/Form";
-import { PencilIcon, TrashBinIcon, PlusIcon } from "@/icons";
+import { PencilIcon, TrashBinIcon } from "@/icons";
 import { productCategories } from "@/data/inventory";
+import { Pencil, Plus, Trash } from "lucide-react";
 
 const initialFormState = {
   name: "",
@@ -67,12 +68,14 @@ export default function InventoryProductCategories() {
         description="Manage inventory product categories and quick add new ones."
       />
       <PageBreadcrumb pageTitle="Product Categories" />
-      <ComponentCard title="Product Categories">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
+      <ComponentCard
+        title="Product Categories"
+        headerClassName="py-3!"
+        extraHeaderContent={
+          <div className="flex flex-wrap items-center justify-between gap-3">
             <Button
               size="sm"
-              startIcon={<PlusIcon className="size-4" />}
+              startIcon={<Plus className="size-5" />}
               onClick={() => handleOpenModal("add")}
             >
               Add Product Category
@@ -80,13 +83,14 @@ export default function InventoryProductCategories() {
             <Button
               size="sm"
               variant="outline"
-              startIcon={<PlusIcon className="size-4" />}
+              startIcon={<Plus className="size-5" />}
               onClick={() => handleOpenModal("quick")}
             >
               Add Quick Product Category
             </Button>
           </div>
-        </div>
+        }
+      >
         <div className="max-w-full overflow-x-auto">
           <Table>
             <TableHeader className="border-b border-gray-100 dark:border-white/5">
@@ -141,7 +145,7 @@ export default function InventoryProductCategories() {
                         size="sm"
                         variant="outline"
                         className="px-3 py-2"
-                        startIcon={<PencilIcon className="size-4" />}
+                        startIcon={<Pencil className="size-4" />}
                       >
                         Edit
                       </Button>
@@ -149,7 +153,7 @@ export default function InventoryProductCategories() {
                         size="sm"
                         variant="outline"
                         className="px-3 py-2 text-error-500 hover:text-error-600"
-                        startIcon={<TrashBinIcon className="size-4" />}
+                        startIcon={<Trash className="size-4" />}
                       >
                         Delete
                       </Button>
