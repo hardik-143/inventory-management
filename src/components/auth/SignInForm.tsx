@@ -1,44 +1,82 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
+import { ArrowRight, Lock, Mail, ShieldCheck } from "lucide-react";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
 
+const metrics = [
+  { label: "Inventory synced", value: "1,482", helper: "+18% this week" },
+  { label: "Fulfillment SLA", value: "99.2%", helper: "holding steady" },
+];
+
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const [rememberDevice, setRememberDevice] = useState(true);
+  const navigate = useNavigate();
+
   return (
-    <div className="flex flex-col flex-1">
-      <div className="w-full max-w-md pt-10 mx-auto">
+    <div className="flex flex-1 flex-col px-4 py-10 sm:px-8 lg:px-12">
+      <div className="mx-auto w-full max-w-xl">
         <Link
           to="/"
-          className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+          className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
         >
           <ChevronLeftIcon className="size-5" />
           Back to dashboard
         </Link>
-      </div>
-      <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
-        <div>
-          <div className="mb-5 sm:mb-8">
-            <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-              Sign In
-            </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Enter your email and password to sign in!
-            </p>
-          </div>
-          <div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
-              <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
+
+        <div className="relative mt-8 overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl shadow-brand-950/5 dark:border-white/10 dark:bg-gray-900/80">
+          <div className="pointer-events-none absolute -top-24 right-0 h-56 w-56 rounded-full bg-brand-500/30 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-10 left-10 h-36 w-36 rounded-full bg-orange-400/20 blur-3xl" />
+
+          <div className="relative space-y-8 p-8 sm:p-10">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="space-y-4">
+                <span className="inline-flex items-center gap-2 self-start rounded-full border border-brand-200/50 bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-brand-600 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-200">
+                  Welcome back
+                </span>
+                <div className="space-y-2">
+                  <h1 className="text-2xl font-semibold text-gray-900 dark:text-white sm:text-3xl">
+                    Sign in to orchestrate your inventory
+                  </h1>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Manage stock health, monitor shipments, and keep your
+                    revenue teams aligned from one command center.
+                  </p>
+                </div>
+              </div>
+              <div className="flex w-full max-w-[180px] flex-col gap-3 sm:w-auto">
+                {metrics.map((metric) => (
+                  <div
+                    key={metric.label}
+                    className="rounded-2xl border border-white/60 bg-white/80 p-3 text-sm shadow-lg shadow-brand-500/10 backdrop-blur dark:border-white/10 dark:bg-white/5"
+                  >
+                    <p className="text-xs font-medium uppercase tracking-[0.14em] text-gray-400 dark:text-gray-500">
+                      {metric.label}
+                    </p>
+                    <p className="mt-1 text-xl font-semibold text-gray-900 dark:text-white">
+                      {metric.value}
+                    </p>
+                    <p className="text-xs text-brand-600 dark:text-brand-200">
+                      {metric.helper}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <button className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl border border-gray-200/70 bg-white px-6 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-brand-200 hover:text-brand-600 dark:border-white/10 dark:bg-white/5 dark:text-white/90 dark:hover:border-brand-500/40">
                 <svg
                   width="20"
                   height="20"
                   viewBox="0 0 20 20"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden
                 >
                   <path
                     d="M18.7511 10.1944C18.7511 9.47495 18.6915 8.94995 18.5626 8.40552H10.1797V11.6527H15.1003C15.0011 12.4597 14.4654 13.675 13.2749 14.4916L13.2582 14.6003L15.9087 16.6126L16.0924 16.6305C17.7788 15.1041 18.7511 12.8583 18.7511 10.1944Z"
@@ -57,92 +95,118 @@ export default function SignInForm() {
                     fill="#EB4335"
                   />
                 </svg>
-                Sign in with Google
+                Google
               </button>
-              <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
-                <svg
-                  width="21"
-                  className="fill-current"
-                  height="20"
-                  viewBox="0 0 21 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M15.6705 1.875H18.4272L12.4047 8.75833L19.4897 18.125H13.9422L9.59717 12.4442L4.62554 18.125H1.86721L8.30887 10.7625L1.51221 1.875H7.20054L11.128 7.0675L15.6705 1.875ZM14.703 16.475H16.2305L6.37054 3.43833H4.73137L14.703 16.475Z" />
-                </svg>
-                Sign in with X
-              </button>
+              <Button
+                variant="primarySoft"
+                className="w-full justify-center"
+                size="md"
+                onClick={() => navigate("/otp")}
+              >
+                Use one-time passcode
+                <ArrowRight className="size-4" />
+              </Button>
             </div>
-            <div className="relative py-3 sm:py-5">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="p-2 text-gray-400 bg-white dark:bg-gray-900 sm:px-5 sm:py-2">
-                  Or
-                </span>
-              </div>
+
+            <div className="relative">
+              <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gray-200 to-transparent dark:via-white/10" />
+              <span className="relative mx-auto block w-max rounded-full border border-gray-200 bg-white px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-gray-400 dark:border-white/10 dark:bg-gray-900">
+                Or continue with email
+              </span>
             </div>
-            <form>
-              <div className="space-y-6">
-                <div>
-                  <Label>
-                    Email <span className="text-error-500">*</span>{" "}
-                  </Label>
-                  <Input placeholder="info@gmail.com" />
-                </div>
-                <div>
-                  <Label>
-                    Password <span className="text-error-500">*</span>{" "}
-                  </Label>
-                  <div className="relative">
-                    <Input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
-                    />
-                    <span
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
-                    >
-                      {showPassword ? (
-                        <EyeIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
-                      ) : (
-                        <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
-                      )}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Checkbox checked={isChecked} onChange={setIsChecked} />
-                    <span className="block font-normal text-gray-700 text-theme-sm dark:text-gray-400">
-                      Keep me logged in
-                    </span>
-                  </div>
-                  <Link
-                    to="/reset-password"
-                    className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
+
+            <form className="space-y-6">
+              <div className="space-y-2">
+                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  Email address
+                </Label>
+                <Input
+                  type="email"
+                  placeholder="you@inventoryteam.com"
+                  prefix={<Mail className="size-4" />}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  Password
+                </Label>
+                <div className="relative">
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    prefix={<Lock className="size-4" />}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-gray-600 focus:outline-hidden dark:text-gray-500 dark:hover:text-gray-300"
                   >
-                    Forgot password?
+                    {showPassword ? (
+                      <EyeIcon className="size-5 fill-current" />
+                    ) : (
+                      <EyeCloseIcon className="size-5 fill-current" />
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <label className="inline-flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                  <Checkbox
+                    checked={rememberDevice}
+                    onChange={setRememberDevice}
+                  />
+                  Remember this device
+                </label>
+                <Link
+                  to="/reset-password"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-brand-500 transition hover:text-brand-600 dark:text-brand-300"
+                >
+                  <ShieldCheck className="size-4" />
+                  Forgot password?
+                </Link>
+              </div>
+              <div className="space-y-3">
+                <Button
+                  type="submit"
+                  className="w-full justify-center"
+                  size="md"
+                >
+                  Sign in
+                  <ArrowRight className="ml-2 size-4" />
+                </Button>
+                <Button
+                  variant="primarySoft"
+                  className="w-full justify-center"
+                  size="md"
+                >
+                  <Link
+                    to="/otp"
+                    className="inline-flex w-full items-center justify-center gap-2"
+                  >
+                    Use one-time passcode
+                    <ArrowRight className="size-4" />
                   </Link>
-                </div>
-                <div>
-                  <Button className="w-full" size="sm">
-                    Sign in
-                  </Button>
-                </div>
+                </Button>
               </div>
             </form>
 
-            <div className="mt-5">
-              <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
-                Don&apos;t have an account? {""}
+            <div className="flex flex-col gap-3 border-t border-gray-100 pt-6 text-sm text-gray-500 dark:border-white/10 dark:text-gray-400 sm:flex-row sm:items-center sm:justify-between">
+              <p>
+                Don&apos;t have an account?{` `}
                 <Link
                   to="/signup"
-                  className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
+                  className="font-semibold text-brand-500 transition hover:text-brand-600 dark:text-brand-300"
                 >
-                  Sign Up
+                  Create one now
                 </Link>
+              </p>
+              <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">
+                Secure access
+                <span className="h-1 w-1 rounded-full bg-current" />
+                ISO 27001 ready
               </p>
             </div>
           </div>
