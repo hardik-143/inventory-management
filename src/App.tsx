@@ -29,6 +29,7 @@ import InventoryProductDetails from "@/pages/Inventory/ProductDetails";
 import InventoryCustomers from "@/pages/Inventory/Customers";
 import InventoryAddCustomer from "@/pages/Inventory/AddCustomer";
 import StatusCatalogPreview from "./pages/Catalog/StatusCatalogPreview";
+import StatusCatalogGallery from "./pages/Catalog/StatusCatalogGallery";
 
 export default function App() {
   return (
@@ -95,6 +96,10 @@ export default function App() {
           <Route
             path="/catalog/status/preview"
             element={<StatusCatalogPreview />}
+          />
+          <Route
+            path="/catalog/status/gallery"
+            element={<StatusCatalogGallery />}
           />
 
           {/* Auth Layout */}

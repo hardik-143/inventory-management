@@ -73,7 +73,7 @@ const Button = ({
     primary:
       "bg-brand-500 !text-white shadow-theme-xs enabled:hover:bg-brand-600 disabled:bg-brand-300",
     outline:
-      "bg-white text-gray-700 border border-gray-300 enabled:hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:enabled:hover:bg-white/[0.03] dark:enabled:hover:text-gray-300",
+      "bg-white !text-gray-700 border border-gray-300 enabled:hover:bg-gray-50 dark:bg-gray-800 dark:!text-gray-400 dark:border-gray-700 dark:enabled:hover:bg-white/[0.03] dark:enabled:hover:!text-gray-300",
     primarySoft:
       "bg-brand-50 text-brand-600 border border-brand-100 enabled:hover:bg-brand-100 dark:bg-brand-500/15 dark:text-brand-200 dark:border-brand-500/20 disabled:bg-brand-100 disabled:text-brand-300",
     primaryOutline:
