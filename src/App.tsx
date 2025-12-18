@@ -28,6 +28,7 @@ import InventoryAddProduct from "@/pages/Inventory/AddProduct";
 import InventoryProductDetails from "@/pages/Inventory/ProductDetails";
 import InventoryCustomers from "@/pages/Inventory/Customers";
 import InventoryAddCustomer from "@/pages/Inventory/AddCustomer";
+import StatusCatalogPreview from "./pages/Catalog/StatusCatalogPreview";
 
 export default function App() {
   return (
@@ -90,6 +91,11 @@ export default function App() {
             <Route path="/line-chart" element={<LineChart />} />
             <Route path="/bar-chart" element={<BarChart />} />
           </Route>
+
+          <Route
+            path="/catalog/status/preview"
+            element={<StatusCatalogPreview />}
+          />
 
           {/* Auth Layout */}
           <Route path="/signin" element={<SignIn />} />

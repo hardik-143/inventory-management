@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router";
 import { clsx } from "clsx";
-import { ArrowLeft, ArrowRight, Mail, RefreshCw, Timer } from "lucide-react";
+import { ArrowLeft, ArrowRight, RefreshCw, Timer } from "lucide-react";
 import Button from "../ui/button/Button";
 
 const OTP_LENGTH = 6;
