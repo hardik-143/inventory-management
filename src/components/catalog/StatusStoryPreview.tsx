@@ -106,8 +106,8 @@ const StatusStoryPreview = ({
       </div>
 
       {/* Centered Story */}
-      <div className="relative z-10 flex min-h-[100dvh] w-full items-center justify-center px-3 py-8 sm:px-6 sm:py-12 md:px-10">
-        <div className="relative aspect-[9/16] w-full max-w-[min(420px,_100vw-28px)] sm:max-w-sm md:max-w-md">
+      <div className="relative z-10 flex h-dvh w-full items-center justify-center px-3 py-4 sm:px-6 sm:py-6 md:px-10">
+        <div className="relative aspect-9/16 h-full w-auto">
           {/* Desktop Navigation */}
           <button
             type="button"
