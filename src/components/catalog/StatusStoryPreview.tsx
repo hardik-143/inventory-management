@@ -87,9 +87,9 @@ const StatusStoryPreview = ({
   }
 
   return (
-    <div className="relative h-dvh w-full overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="relative min-h-[100dvh] w-full overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Animated Background Blur */}
-      <div className="absolute inset-0 hidden md:block">
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
         {clampedItems.map((item, index) => (
           <img
             key={item.id}
@@ -106,22 +106,26 @@ const StatusStoryPreview = ({
       </div>
 
       {/* Centered Story */}
-      <div className="relative z-10 flex items-center h-full justify-center p-4 md:p-8">
-        <div className="relative aspect-9/16 h-full w-auto">
+      <div className="relative z-10 flex min-h-[100dvh] w-full items-center justify-center px-3 py-8 sm:px-6 sm:py-12 md:px-10">
+        <div className="relative aspect-[9/16] w-full max-w-[min(420px,_100vw-28px)] sm:max-w-sm md:max-w-md">
           {/* Desktop Navigation */}
           <button
+            type="button"
             onClick={() =>
               handleSelect((activeIndex - 1 + totalItems) % totalItems)
             }
-            className="absolute -left-16 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-2xl backdrop-blur-sm transition-all hover:scale-110 hover:bg-white md:block"
+            className="absolute -left-16 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-2xl backdrop-blur-sm transition-all hover:scale-110 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:block"
+            style={{ touchAction: "manipulation" }}
             aria-label="Previous story"
           >
             <ChevronLeft className="h-6 w-6 text-black" />
           </button>
 
           <button
+            type="button"
             onClick={() => handleSelect((activeIndex + 1) % totalItems)}
-            className="absolute -right-16 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-2xl backdrop-blur-sm transition-all hover:scale-110 hover:bg-white md:block"
+            className="absolute -right-16 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-2xl backdrop-blur-sm transition-all hover:scale-110 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:block"
+            style={{ touchAction: "manipulation" }}
             aria-label="Next story"
           >
             <ChevronRight className="h-6 w-6 text-black" />
@@ -129,15 +133,19 @@ const StatusStoryPreview = ({
 
           {/* Mobile Tap Zones */}
           <button
+            type="button"
             onClick={() =>
               handleSelect((activeIndex - 1 + totalItems) % totalItems)
             }
-            className="absolute inset-y-0 left-0 w-1/3 md:hidden"
+            className="absolute inset-y-0 left-0 z-20 w-1/3 rounded-l-[28px] bg-transparent md:hidden"
+            style={{ touchAction: "manipulation" }}
             aria-label="Previous story"
           />
           <button
+            type="button"
             onClick={() => handleSelect((activeIndex + 1) % totalItems)}
-            className="absolute inset-y-0 right-0 w-1/3 md:hidden"
+            className="absolute inset-y-0 right-0 z-20 w-1/3 rounded-r-[28px] bg-transparent md:hidden"
+            style={{ touchAction: "manipulation" }}
             aria-label="Next story"
           />
 
@@ -156,8 +164,9 @@ const StatusStoryPreview = ({
                 return (
                   <button
                     key={index}
+                    type="button"
                     onClick={() => handleSelect(index)}
-                    className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/20 backdrop-blur-sm transition-all hover:h-1.5"
+                    className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/20 backdrop-blur-sm transition-all hover:h-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     aria-label={`Go to story ${index + 1}`}
                   >
                     <span
@@ -172,8 +181,10 @@ const StatusStoryPreview = ({
             {/* Pause/Play Button */}
             {totalItems > 1 && (
               <button
+                type="button"
                 onClick={() => setIsPaused(!isPaused)}
-                className="absolute right-4 top-16 z-20 rounded-full bg-black/40 p-2 backdrop-blur-sm transition-all hover:bg-black/60"
+                className="absolute right-3 top-16 z-20 rounded-full bg-black/40 p-2 backdrop-blur-sm transition-all hover:bg-black/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-4"
+                style={{ touchAction: "manipulation" }}
                 aria-label={isPaused ? "Play" : "Pause"}
               >
                 {isPaused ? (
