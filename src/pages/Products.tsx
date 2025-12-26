@@ -58,7 +58,7 @@ const buildQuickAddState = (): QuickAddState => ({
   })),
 });
 
-export default function InventoryProducts() {
+export default function Products() {
   const navigate = useNavigate();
   const quickAddMatch = useMatch("/inventory/products/quick-add");
   const isQuickAddOpen = Boolean(quickAddMatch);

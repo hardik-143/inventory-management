@@ -36,14 +36,14 @@ const navItems: NavItem[] = [
     icon: <BoxCubeIcon />,
     name: "Products",
     subItems: [
-      { name: "All Products", path: "/inventory/products" },
-      { name: "Add Product", path: "/inventory/products/add" },
+      { name: "All Products", path: "/products" },
+      { name: "Add Product", path: "/products/add" },
     ],
   },
   {
     icon: <BoxCubeIcon />,
     name: "Product Categories",
-    path: "/inventory/categories",
+    path: "/categories",
   },
   // {
   //   icon: <PageIcon />,
@@ -54,8 +54,8 @@ const navItems: NavItem[] = [
     icon: <UserIcon />,
     name: "Customers",
     subItems: [
-      { name: "Customer List", path: "/inventory/customers" },
-      { name: "Add Customer", path: "/inventory/customers/add" },
+      { name: "Customer List", path: "/customers" },
+      { name: "Add Customer", path: "/customers/add" },
     ],
   },
   // {

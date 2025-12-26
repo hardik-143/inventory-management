@@ -16,7 +16,7 @@ import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
 import { customers } from "@/data/inventory";
 import { Ellipsis, Eye, Pencil, Plus, Trash } from "lucide-react";
 
-export default function InventoryCustomers() {
+export default function Customers() {
   const navigate = useNavigate();
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);

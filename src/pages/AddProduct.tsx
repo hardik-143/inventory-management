@@ -43,7 +43,7 @@ const buildInitialState = (): ProductFormState => ({
   })),
 });
 
-export default function InventoryAddProduct() {
+export default function AddProduct() {
   const navigate = useNavigate();
   const [formState, setFormState] =
     useState<ProductFormState>(buildInitialState);

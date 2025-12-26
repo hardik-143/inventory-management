@@ -26,7 +26,7 @@ const buildInitialState = (): CustomerFormState => ({
   email: "",
 });
 
-export default function InventoryAddCustomer() {
+export default function AddCustomer() {
   const navigate = useNavigate();
   const [formState, setFormState] = useState<CustomerFormState>(
     buildInitialState()

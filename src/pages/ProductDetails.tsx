@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/table";
 import { productDetailsMap } from "@/data/inventory";
 
-export default function InventoryProductDetails() {
+export default function ProductDetails() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 

@@ -21,15 +21,16 @@ import FormElements from "./pages/Forms/FormElements";
 import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
-import Home from "./pages/Dashboard/Home";
-import InventoryProductCategories from "@/pages/Inventory/ProductCategories";
-import InventoryProducts from "@/pages/Inventory/Products";
-import InventoryAddProduct from "@/pages/Inventory/AddProduct";
-import InventoryProductDetails from "@/pages/Inventory/ProductDetails";
-import InventoryCustomers from "@/pages/Inventory/Customers";
-import InventoryAddCustomer from "@/pages/Inventory/AddCustomer";
+import AdminDashboard from "./pages/Dashboard/Home";
+import ProductCategories from "@/pages/ProductCategories";
+import Products from "@/pages/Products";
+import AddProduct from "@/pages/AddProduct";
+import ProductDetails from "@/pages/ProductDetails";
+import Customers from "@/pages/Customers";
+import AddCustomer from "@/pages/AddCustomer";
 import StatusCatalogPreview from "./pages/Catalog/StatusCatalogPreview";
 import StatusCatalogGallery from "./pages/Catalog/StatusCatalogGallery";
+import GroceryLandingPage from "./pages/GroceryLandingPage";
 
 export default function App() {
   return (
@@ -37,34 +38,19 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <Routes>
+          {/* Main Grocery Landing Page */}
+          <Route path="/" element={<GroceryLandingPage />} />
+
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
-            <Route index path="/" element={<Home />} />
-            <Route
-              path="/inventory/categories"
-              element={<InventoryProductCategories />}
-            />
-            <Route path="/inventory/products" element={<InventoryProducts />} />
-            <Route
-              path="/inventory/products/quick-add"
-              element={<InventoryProducts />}
-            />
-            <Route
-              path="/inventory/products/add"
-              element={<InventoryAddProduct />}
-            />
-            <Route
-              path="/inventory/products/:id"
-              element={<InventoryProductDetails />}
-            />
-            <Route
-              path="/inventory/customers"
-              element={<InventoryCustomers />}
-            />
-            <Route
-              path="/inventory/customers/add"
-              element={<InventoryAddCustomer />}
-            />
+            <Route index path="/admin" element={<AdminDashboard />} />
+            <Route path="/categories" element={<ProductCategories />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/quick-add" element={<Products />} />
+            <Route path="/products/add" element={<AddProduct />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/customers" element={<Customers />} />
+            <Route path="/customers/add" element={<AddCustomer />} />
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />

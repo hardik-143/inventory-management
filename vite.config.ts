@@ -34,4 +34,40 @@ export default defineConfig({
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"], // include TS extensions
   },
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        if (warning.code === "EVAL") return;
+        warn(warning);
+      },
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+
+          // Core React
+          if (id.includes("react")) return "react-vendor";
+
+          // Ant Design
+          if (id.includes("antd") || id.includes("@ant-design")) return "antd";
+
+          // Charts
+          if (id.includes("apexcharts")) return "charts";
+
+          // Calendar
+          if (id.includes("@fullcalendar")) return "calendar";
+
+          // Maps
+          if (id.includes("jvectormap")) return "maps";
+
+          // Animations & sliders
+          if (id.includes("gsap") || id.includes("swiper")) return "animations";
+
+          // Drag & drop
+          if (id.includes("react-dnd")) return "dnd";
+
+          return "vendor";
+        },
+      },
+    },
+  },
 });
