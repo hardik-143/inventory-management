@@ -30,7 +30,7 @@ export default function HeroSection({ onSearch }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-green-50 to-blue-50 py-16 px-4 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-green-50 to-blue-50 py-20 px-4 overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute left-4 top-1/2 transform -translate-y-1/2 opacity-20">
         <div className="w-32 h-32 bg-green-200 rounded-full"></div>
