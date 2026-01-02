@@ -31,6 +31,7 @@ import AddCustomer from "@/pages/AddCustomer";
 import StatusCatalogPreview from "./pages/Catalog/StatusCatalogPreview";
 import StatusCatalogGallery from "./pages/Catalog/StatusCatalogGallery";
 import GroceryLandingPage from "./pages/GroceryLandingPage";
+import { GalleryConfigProvider } from "./context/GalleryConfigContext";
 
 export default function App() {
   return (
@@ -85,7 +86,11 @@ export default function App() {
           />
           <Route
             path="/catalog/status/gallery"
-            element={<StatusCatalogGallery />}
+            element={
+              <GalleryConfigProvider>
+                <StatusCatalogGallery />
+              </GalleryConfigProvider>
+            }
           />
 
           {/* Auth Layout */}
