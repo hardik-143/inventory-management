@@ -124,11 +124,29 @@ A fully customizable gallery system with a comprehensive configuration panel for
 - Automatic layout mirroring
 - Perfect for Arabic, Hebrew, etc.
 
-### 6. Type-Safe Configuration
+### 6. Masonry Layout
+
+- Pinterest-style columnar flow layout
+- Random card heights (250-400px range) for visual variety
+- Seeded random algorithm ensures consistency across renders
+- Independent gap control for columns and rows
+- Perfect for portfolios, photography galleries, and creative showcases
+
+### 7. Separate Gap Controls
+
+- Horizontal gap (2-8 units) controls spacing between columns
+- Vertical gap (2-8 units) controls spacing between rows/cards
+- Applied differently based on layout type:
+  - Grid: Uses CSS `columnGap` and `rowGap`
+  - Masonry: Uses CSS `columnGap` and `marginBottom` for card spacing
+- Allows fine-grained control over visual spacing
+
+### 8. Type-Safe Configuration
 
 - TypeScript interfaces for all settings
 - Type hints for configuration options
 - Prevents invalid configurations
+- Configuration merging ensures undefined values don't cause runtime errors
 
 ## How to Use
 

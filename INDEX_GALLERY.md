@@ -32,7 +32,7 @@ A complete, production-ready customizable gallery system with **30+ configurable
 - `GalleryConfigProvider` (component)
 - `useGalleryConfig` (hook)
 
-#### 2. **[src/components/catalog/GalleryConfigPanel.tsx](src/components/catalog/GalleryConfigPanel.tsx)** (450+ lines)
+#### 2. **[src/components/catalog/GalleryConfigPanel.tsx](src/components/catalog/GalleryConfigPanel.tsx)** (590 lines)
 
 - Sliding configuration panel UI
 - 30+ customization controls organized in sections:
@@ -52,7 +52,7 @@ A complete, production-ready customizable gallery system with **30+ configurable
 - Reset to defaults button
 - Responsive design
 
-#### 3. **[src/pages/Catalog/StatusCatalogGallery.tsx](src/pages/Catalog/StatusCatalogGallery.tsx)** (265 lines)
+#### 3. **[src/pages/Catalog/StatusCatalogGallery.tsx](src/pages/Catalog/StatusCatalogGallery.tsx)** (402 lines)
 
 - Main gallery component
 - Refactored for configuration support
@@ -260,14 +260,17 @@ Browse: **GALLERY_VISUAL_GUIDE.md**
 ### ✅ Implemented
 
 - [x] Light & Dark themes
-- [x] 30+ customizable settings
+- [x] 40+ customizable settings
 - [x] Real-time preview
-- [x] LocalStorage persistence
+- [x] LocalStorage persistence with config merging
 - [x] RTL support
 - [x] Responsive design
 - [x] Glass morphism cards
 - [x] Hover effects
 - [x] Buy button customization
+- [x] Grid layout (1-4 columns)
+- [x] Masonry layout (Pinterest-style with random heights)
+- [x] Separate horizontal & vertical gap controls
 - [x] Complete documentation
 
 ### 🚀 Ready for Production
@@ -280,21 +283,22 @@ Browse: **GALLERY_VISUAL_GUIDE.md**
 
 ## 📊 Statistics
 
-| Metric                    | Value        |
-| ------------------------- | ------------ |
-| Total Settings            | 30+          |
-| Configuration Sections    | 8            |
-| Preset Styles             | 4            |
-| Color Options             | 6 (+ custom) |
-| Font Families             | 4            |
-| Card Styles               | 4            |
-| Shadow Options            | 5            |
-| Aspect Ratios             | 5            |
-| Layout Types              | 3 (1 active) |
-| Documentation Pages       | 5            |
-| Code Files Created        | 2            |
-| Code Files Modified       | 2            |
-| Total Documentation Lines | 1500+        |
+| Metric                    | Value                       |
+| ------------------------- | --------------------------- |
+| Total Settings            | 40+                         |
+| Configuration Sections    | 8                           |
+| Preset Styles             | 4                           |
+| Color Options             | 6 (+ custom)                |
+| Font Families             | 6                           |
+| Card Styles               | 4                           |
+| Shadow Options            | 5                           |
+| Aspect Ratios             | 5                           |
+| Layout Types              | 3 (Grid, Masonry, Carousel) |
+| Gap Control Types         | 2 (Horizontal, Vertical)    |
+| Documentation Pages       | 6                           |
+| Code Files Created        | 2                           |
+| Code Files Modified       | 2                           |
+| Total Documentation Lines | 2000+                       |
 
 ## 🔧 Technical Stack
 
