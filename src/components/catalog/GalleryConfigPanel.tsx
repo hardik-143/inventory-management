@@ -1,6 +1,122 @@
 import { useState } from "react";
-import { useGalleryConfig } from "../../context/GalleryConfigContext";
 import clsx from "clsx";
+import { useGalleryConfig } from "@/hooks/useGalleryConfig";
+import { GalleryConfig } from "@/context/galleryConfig.types";
+import { softBackgroundColors } from "@/context/galleryConfig.constants";
+import Select from "@/components/form/Select";
+import Input from "@/components/form/input/InputField";
+
+// Custom Background Color Dropdown Component
+function BackgroundColorDropdown({
+  selectedColor,
+  onColorSelect,
+}: {
+  selectedColor: string;
+  onColorSelect: (color: string) => void;
+}) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const selectedOption =
+    softBackgroundColors.find((bg) => bg.value === selectedColor) ||
+    softBackgroundColors[0];
+
+  return (
+    <div className="relative">
+      {/* Main Button */}
+      <button
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        className="w-full flex items-center justify-between px-4 py-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 transition"
+      >
+        <div className="flex items-center gap-3">
+          {/* Color Preview */}
+          <div
+            className="w-6 h-6 rounded-full border-2 border-slate-300 shadow-sm"
+            style={{ backgroundColor: selectedOption.value }}
+          />
+          {/* Color Name */}
+          <span className="font-medium text-slate-900">
+            {selectedOption.name}
+          </span>
+        </div>
+
+        {/* Dropdown Arrow */}
+        <svg
+          className={clsx(
+            "w-5 h-5 transition-transform duration-200 text-slate-900",
+            isDropdownOpen ? "rotate-180" : "rotate-0"
+          )}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+
+      {/* Dropdown Menu */}
+      {isDropdownOpen && (
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-300 rounded-lg shadow-lg z-10 max-h-64 overflow-y-auto">
+          {softBackgroundColors.map((bg) => (
+            <button
+              key={bg.value}
+              onClick={() => {
+                onColorSelect(bg.value);
+                setIsDropdownOpen(false);
+              }}
+              className={clsx(
+                "w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-100 transition",
+                "first:rounded-t-lg last:rounded-b-lg",
+                selectedColor === bg.value && "bg-blue-50"
+              )}
+            >
+              {/* Color Preview */}
+              <div
+                className="w-8 h-8 rounded-full border-2 border-slate-300 shadow-sm flex-shrink-0"
+                style={{ backgroundColor: bg.value }}
+              />
+
+              {/* Color Details */}
+              <div className="flex-1 min-w-0">
+                <div className="font-medium text-slate-900">{bg.name}</div>
+                <div className="text-sm text-slate-500 font-mono">
+                  {bg.value}
+                </div>
+              </div>
+
+              {/* Selected Checkmark */}
+              {selectedColor === bg.value && (
+                <svg
+                  className="w-5 h-5 text-blue-500 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Backdrop to close dropdown */}
+      {isDropdownOpen && (
+        <div
+          className="fixed inset-0 z-0"
+          onClick={() => setIsDropdownOpen(false)}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function GalleryConfigPanel() {
   const { config, updateConfig, applyLightTheme, applyDarkTheme, resetConfig } =
@@ -50,18 +166,18 @@ export default function GalleryConfigPanel() {
 
       <div
         className={clsx(
-          "fixed top-0 right-0 h-screen w-full max-w-md bg-white dark:bg-slate-900 shadow-2xl z-50 transition-transform duration-300 overflow-y-auto",
+          "fixed top-0 right-0 h-screen w-full max-w-md bg-white shadow-2xl z-50 transition-transform duration-300 overflow-y-auto",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+            <h2 className="text-2xl font-bold text-slate-900">
               Gallery Settings
             </h2>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition"
+              className="p-2 hover:bg-slate-100 text-slate-900! rounded-lg transition"
             >
               <svg
                 className="w-6 h-6"
@@ -81,33 +197,44 @@ export default function GalleryConfigPanel() {
 
           {/* Theme Selection */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Theme
-            </h3>
+            <h3 className="font-semibold text-slate-900">Theme</h3>
             <div className="flex gap-2">
               <button
                 onClick={applyLightTheme}
                 className={clsx(
                   "flex-1 px-4 py-2 rounded-lg font-medium transition",
                   config.theme === "light"
-                    ? "bg-blue-500 text-white"
-                    : "bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600"
+                    ? "bg-blue-500 text-white!"
+                    : "bg-slate-200 text-slate-900! hover:bg-slate-300"
                 )}
               >
-                ☀️ Light
+                ☀️&nbsp;&nbsp; Light
               </button>
               <button
                 onClick={applyDarkTheme}
                 className={clsx(
                   "flex-1 px-4 py-2 rounded-lg font-medium transition",
                   config.theme === "dark"
-                    ? "bg-blue-500 text-white"
-                    : "bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600"
+                    ? "bg-blue-500 text-white!"
+                    : "bg-slate-200 text-slate-900 hover:bg-slate-300"
                 )}
               >
-                🌙 Dark
+                🌙&nbsp;&nbsp; Dark
               </button>
             </div>
+          </section>
+
+          {/* Gallery Background Color */}
+          <section className="space-y-4">
+            <h3 className="font-semibold text-slate-900">
+              Gallery Background Color
+            </h3>
+            <BackgroundColorDropdown
+              selectedColor={config.galleryBackgroundColor}
+              onColorSelect={(color) =>
+                updateConfig({ galleryBackgroundColor: color })
+              }
+            />
           </section>
 
           {/* Card Style */}
@@ -122,7 +249,7 @@ export default function GalleryConfigPanel() {
                   cardStyle: e.target.value as any,
                 })
               }
-              className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+              className="w-full px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-900"
             >
               <option value="glass">Glass Morphism</option>
               <option value="soft">Soft</option>
@@ -133,10 +260,8 @@ export default function GalleryConfigPanel() {
 
           {/* Accent Color */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Accent Color
-            </h3>
-            <div className="grid grid-cols-6 gap-2">
+            <h3 className="font-semibold text-slate-900">Accent Color</h3>
+            <div className="flex flex-wrap gap-5">
               {[
                 "rgb(59, 130, 246)",
                 "rgb(34, 197, 94)",
@@ -145,70 +270,84 @@ export default function GalleryConfigPanel() {
                 "rgb(168, 85, 247)",
                 "rgb(14, 165, 233)",
               ].map((color) => (
-                <button
-                  key={color}
-                  onClick={() => updateConfig({ accentColor: color })}
-                  className="w-10 h-10 rounded-lg transition transform hover:scale-110 border-2 border-slate-300 dark:border-slate-600"
-                  style={{
-                    backgroundColor: color,
-                    borderColor:
-                      config.accentColor === color
-                        ? "rgb(15, 23, 42)"
-                        : undefined,
-                    borderWidth:
-                      config.accentColor === color ? "3px" : undefined,
-                  }}
-                />
+                <div
+                  className="relative group"
+                  style={
+                    {
+                      "--main-color": color,
+                    } as React.CSSProperties
+                  }
+                >
+                  <span
+                    className="absolute left-0 top-0 z-1 w-10 h-10 scale-[1.2] rounded-[9px] border-2 border-transparent transition-all duration-200 group-hover:border-(--main-color)"
+                    style={{
+                      borderColor:
+                        config.accentColor === color ? "rgb(15, 23, 42)" : "",
+                    }}
+                  ></span>
+                  <button
+                    key={color}
+                    onClick={() => updateConfig({ accentColor: color })}
+                    className="w-10 relative z-9 h-10 rounded-lg transition transform border-none"
+                    style={{
+                      backgroundColor: color,
+                      // borderColor:
+                      //   config.accentColor === color
+                      //     ? "rgb(15, 23, 42)"
+                      //     : undefined,
+                      // borderWidth:
+                      //   config.accentColor === color ? "3px" : undefined,
+                    }}
+                  />
+                </div>
               ))}
             </div>
           </section>
 
           {/* Font Family */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Font Family
-            </h3>
-            <select
-              value={config.fontFamily}
-              onChange={(e) =>
+            <h3 className="font-semibold text-slate-900">Font Family</h3>
+            <Select
+              options={[
+                { value: "outfit", label: "Outfit" },
+                { value: "montserrat", label: "Montserrat" },
+                { value: "lexend", label: "Lexend" },
+                { value: "poppins", label: "Poppins" },
+                { value: "roboto", label: "Roboto" },
+                { value: "open-sans", label: "Open Sans" },
+              ]}
+              defaultValue={config.fontFamily}
+              onChange={(value) =>
                 updateConfig({
-                  fontFamily: e.target.value as any,
+                  fontFamily: value as GalleryConfig["fontFamily"],
                 })
               }
-              className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-            >
-              <option value="outfit">Outfit</option>
-              <option value="montserrat">Montserrat</option>
-              <option value="lexend">Lexend</option>
-              <option value="poppins">Poppins</option>
-              <option value="roboto">Roboto</option>
-              <option value="open-sans">Open Sans</option>
-            </select>
+              className="w-full"
+            />
           </section>
 
           {/* Grid Layout */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Layout
-            </h3>
-            <select
-              value={config.layout}
-              onChange={(e) =>
+            <h3 className="font-semibold text-slate-900">Layout</h3>
+            <Select
+              options={[
+                { value: "grid", label: "Grid" },
+                { value: "masonry", label: "Masonry" },
+                { value: "carousel", label: "Carousel" },
+              ]}
+              defaultValue={config.layout}
+              onChange={(value) =>
                 updateConfig({
-                  layout: e.target.value as any,
+                  layout: value as GalleryConfig["layout"],
                 })
               }
-              className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white mb-3"
-            >
-              <option value="grid">Grid</option>
-              <option value="masonry">Masonry</option>
-              <option value="carousel">Carousel</option>
-            </select>
+              className="w-full mb-3"
+            />
           </section>
           {config.layout === "grid" && (
             <section>
               <div className="space-y-4">
-                <label className="block text-sm font-semibold text-slate-900 dark:text-white">
+                <label className="block text-sm font-semibold text-slate-900">
                   Columns: {config.gridColumns}
                 </label>
                 <input
@@ -227,7 +366,7 @@ export default function GalleryConfigPanel() {
 
           {/* Gap Size */}
           <section className="space-y-4">
-            <label className="block text-sm font-semibold text-slate-900 dark:text-white">
+            <label className="block text-sm font-semibold text-slate-900">
               Horizontal Gap: {config.horizontalGap}
             </label>
             <input
@@ -241,7 +380,7 @@ export default function GalleryConfigPanel() {
               className="w-full"
             />
 
-            <label className="block text-sm font-semibold text-slate-900 dark:text-white mt-4">
+            <label className="block text-sm font-semibold text-slate-900 mt-4">
               Vertical Gap: {config.verticalGap}
             </label>
             <input
@@ -258,7 +397,7 @@ export default function GalleryConfigPanel() {
 
           {/* Border Radius */}
           <section className="space-y-4">
-            <label className="block text-sm font-semibold text-slate-900 dark:text-white">
+            <label className="block text-sm font-semibold text-slate-900">
               Border Radius: {config.borderRadius}px
             </label>
             <input
@@ -275,19 +414,21 @@ export default function GalleryConfigPanel() {
 
           {/* Shadow Size */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Shadow Size
-            </h3>
+            <h3 className="font-semibold text-slate-900">Shadow Size</h3>
             <div className="grid grid-cols-3 gap-2">
               {["none", "sm", "md", "lg", "xl"].map((size) => (
                 <button
                   key={size}
-                  onClick={() => updateConfig({ shadowSize: size as any })}
+                  onClick={() =>
+                    updateConfig({
+                      shadowSize: size as GalleryConfig["shadowSize"],
+                    })
+                  }
                   className={clsx(
                     "px-3 py-2 rounded-lg font-medium transition capitalize",
                     config.shadowSize === size
-                      ? "bg-blue-500 text-white"
-                      : "bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600"
+                      ? "bg-blue-500 text-white!"
+                      : "bg-slate-200 text-slate-900! hover:bg-slate-300"
                   )}
                 >
                   {size}
@@ -298,29 +439,27 @@ export default function GalleryConfigPanel() {
 
           {/* Card Aspect Ratio */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Card Aspect Ratio
-            </h3>
-            <select
-              value={config.cardAspectRatio}
-              onChange={(e) =>
+            <h3 className="font-semibold text-slate-900">Card Aspect Ratio</h3>
+            <Select
+              options={[
+                { value: "5/6", label: "5:6 (Portrait)" },
+                { value: "4/5", label: "4:5 (Tall)" },
+                { value: "1/1", label: "1:1 (Square)" },
+                { value: "16/9", label: "16:9 (Wide)" },
+              ]}
+              defaultValue={config.cardAspectRatio}
+              onChange={(value) =>
                 updateConfig({
-                  cardAspectRatio: e.target.value as any,
+                  cardAspectRatio: value as GalleryConfig["cardAspectRatio"],
                 })
               }
-              className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-            >
-              <option value="5/6">5:6 (Portrait)</option>
-              <option value="4/5">4:5 (Tall)</option>
-              <option value="1/1">1:1 (Square)</option>
-              <option value="16/9">16:9 (Wide)</option>
-              {/* <option value="auto">Auto</option> */}
-            </select>
+              className="w-full"
+            />
           </section>
 
           {/* Font Sizes */}
           <section className="space-y-4">
-            <label className="block text-sm font-semibold text-slate-900 dark:text-white">
+            <label className="block text-sm font-semibold text-slate-900">
               Heading Font Size: {config.headingFontSize}px
             </label>
             <input
@@ -334,7 +473,7 @@ export default function GalleryConfigPanel() {
               className="w-full mb-4"
             />
 
-            <label className="block text-sm font-semibold text-slate-900 dark:text-white">
+            <label className="block text-sm font-semibold text-slate-900">
               Body Font Size: {config.bodyFontSize}px
             </label>
             <input
@@ -351,17 +490,15 @@ export default function GalleryConfigPanel() {
 
           {/* Direction */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Direction
-            </h3>
+            <h3 className="font-semibold text-slate-900">Direction</h3>
             <div className="flex gap-2">
               <button
                 onClick={() => updateConfig({ direction: "ltr" })}
                 className={clsx(
                   "flex-1 px-4 py-2 rounded-lg font-medium transition",
                   config.direction === "ltr"
-                    ? "bg-blue-500 text-white"
-                    : "bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600"
+                    ? "bg-blue-500 text-white!"
+                    : "bg-slate-200 text-slate-900! hover:bg-slate-300"
                 )}
               >
                 LTR (Left to Right)
@@ -371,8 +508,8 @@ export default function GalleryConfigPanel() {
                 className={clsx(
                   "flex-1 px-4 py-2 rounded-lg font-medium transition",
                   config.direction === "rtl"
-                    ? "bg-blue-500 text-white"
-                    : "bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600"
+                    ? "bg-blue-500 text-white!"
+                    : "bg-slate-200 text-slate-900! hover:bg-slate-300"
                 )}
               >
                 RTL (Right to Left)
@@ -382,9 +519,7 @@ export default function GalleryConfigPanel() {
 
           {/* Toggle Features */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Features
-            </h3>
+            <h3 className="font-semibold text-slate-900">Features</h3>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
@@ -394,9 +529,7 @@ export default function GalleryConfigPanel() {
                 }
                 className="w-4 h-4"
               />
-              <span className="text-slate-900 dark:text-white">
-                Show Buy Button
-              </span>
+              <span className="text-slate-900">Show Buy Button</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -407,9 +540,7 @@ export default function GalleryConfigPanel() {
                 }
                 className="w-4 h-4"
               />
-              <span className="text-slate-900 dark:text-white">
-                Show Auto-share Badge
-              </span>
+              <span className="text-slate-900">Show Auto-share Badge</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -420,9 +551,7 @@ export default function GalleryConfigPanel() {
                 }
                 className="w-4 h-4"
               />
-              <span className="text-slate-900 dark:text-white">
-                Show Index Number
-              </span>
+              <span className="text-slate-900">Show Index Number</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -433,9 +562,7 @@ export default function GalleryConfigPanel() {
                 }
                 className="w-4 h-4"
               />
-              <span className="text-slate-900 dark:text-white">
-                Enable Hover Scale
-              </span>
+              <span className="text-slate-900">Enable Hover Scale</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -446,9 +573,7 @@ export default function GalleryConfigPanel() {
                 }
                 className="w-4 h-4"
               />
-              <span className="text-slate-900 dark:text-white">
-                Enable Hover Gradient
-              </span>
+              <span className="text-slate-900">Enable Hover Gradient</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -459,49 +584,48 @@ export default function GalleryConfigPanel() {
                 }
                 className="w-4 h-4"
               />
-              <span className="text-slate-900 dark:text-white">
-                Enable Image Zoom
-              </span>
+              <span className="text-slate-900">Enable Image Zoom</span>
             </label>
           </section>
 
           {/* Additional Customizations */}
           <section className="space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">
-              Advanced Settings
-            </h3>
+            <h3 className="font-semibold text-slate-900">Advanced Settings</h3>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-slate-900 mb-2">
                 Buy Button Text
               </label>
-              <input
+              <Input
                 type="text"
                 value={config.buyButtonText}
                 onChange={(e) =>
                   updateConfig({ buyButtonText: e.target.value })
                 }
-                className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                className="w-full text-slate-900!"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-slate-900 mb-2">
                 Heading Font Weight: {config.headingFontWeight}
               </label>
-              <select
-                value={config.headingFontWeight}
-                onChange={(e) =>
+              <Select
+                options={[
+                  { value: "600", label: "600 - Semibold" },
+                  { value: "700", label: "700 - Bold" },
+                  { value: "800", label: "800 - Extra Bold" },
+                ]}
+                defaultValue={config.headingFontWeight.toString()}
+                onChange={(value) =>
                   updateConfig({
-                    headingFontWeight: Number(e.target.value) as any,
+                    headingFontWeight: Number(
+                      value
+                    ) as GalleryConfig["headingFontWeight"],
                   })
                 }
-                className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-              >
-                <option value={600}>600 - Semibold</option>
-                <option value={700}>700 - Bold</option>
-                <option value={800}>800 - Extra Bold</option>
-              </select>
+                className="w-full"
+              />
             </div>
 
             {/* <div>
@@ -522,7 +646,7 @@ export default function GalleryConfigPanel() {
             </div> */}
 
             <div>
-              <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-slate-900 mb-2">
                 Card Padding: {config.cardPadding}
               </label>
               <input
@@ -538,7 +662,7 @@ export default function GalleryConfigPanel() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-slate-900 mb-2">
                 Hover Scale: {(config.hoverScaleAmount ?? 1.05).toFixed(2)}x
               </label>
               <input
@@ -555,7 +679,7 @@ export default function GalleryConfigPanel() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+              <label className="block text-sm font-semibold text-slate-900 mb-2">
                 Caption Lines: {config.captionLines}
               </label>
               <input
@@ -564,7 +688,11 @@ export default function GalleryConfigPanel() {
                 max="4"
                 value={config.captionLines}
                 onChange={(e) =>
-                  updateConfig({ captionLines: Number(e.target.value) as any })
+                  updateConfig({
+                    captionLines: Number(
+                      e.target.value
+                    ) as GalleryConfig["captionLines"],
+                  })
                 }
                 className="w-full"
               />

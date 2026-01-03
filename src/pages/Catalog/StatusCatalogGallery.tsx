@@ -3,8 +3,8 @@ import { useLocation } from "react-router";
 import clsx from "clsx";
 import type { StatusItem } from "./StatusCatalog.tsx";
 import { initialStatuses } from "./StatusCatalog.tsx";
-import { useGalleryConfig } from "../../context/GalleryConfigContext";
 import GalleryConfigPanel from "../../components/catalog/GalleryConfigPanel";
+import { useGalleryConfig } from "@/hooks/useGalleryConfig.ts";
 
 type LocationState = {
   items?: StatusItem[];
@@ -376,13 +376,16 @@ export default function StatusCatalogGallery() {
     <div
       className={clsx(
         "relative min-h-dvh w-full overflow-hidden",
-        getBackgroundColor()
+        config.galleryBackgroundColor ? "" : getBackgroundColor()
       )}
       style={{
         direction: config.direction as "ltr" | "rtl",
+        ...{
+          backgroundColor: config.galleryBackgroundColor,
+        },
       }}
     >
-      <div className={clsx("absolute inset-0", getBackgroundGradient())} />
+      {/* <div className={clsx("absolute inset-0", getBackgroundGradient())} /> */}
       <div
         className={clsx(
           "relative z-10 flex min-h-dvh w-full flex-col",

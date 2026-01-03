@@ -67,7 +67,7 @@ const Select: React.FC<SelectProps> = ({
             focus:border-brand-300 focus:outline-hidden focus:ring-3 
             focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 
             dark:text-white/90
-            ${selectedValue ? "text-gray-800 dark:text-white" : "text-gray-400"}
+            ${selectedValue ? "text-gray-800! dark:text-white" : "text-gray-400!"}
           `}
         >
           <span>{selectedOption ? selectedOption.label : placeholder}</span>
@@ -113,7 +113,9 @@ const Select: React.FC<SelectProps> = ({
               >
                 {({ selected }) => (
                   <div className="flex items-center justify-between">
-                    <span>{option.label}</span>
+                    <span className="text-slate-900! dark:text-white">
+                      {option.label}
+                    </span>
 
                     {selected && (
                       <Check className="h-4 w-4 text-brand-600 dark:text-brand-300" />
