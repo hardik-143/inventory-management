@@ -91,8 +91,8 @@ export default function ProductCard({
       <div
         className="relative aspect-square bg-gray-50 overflow-hidden"
         style={{
-          borderTopLeftRadius: cardsConfig.borderRadius - cardsConfig.padding,
-          borderTopRightRadius: cardsConfig.borderRadius - cardsConfig.padding,
+          borderTopLeftRadius: cardsConfig.borderRadius,
+          borderTopRightRadius: cardsConfig.borderRadius,
         }}
       >
         <div className="absolute top-0 pt-2 flex items-center justify-between w-full px-3 z-10 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.3),rgba(0,0,0,0))]">
