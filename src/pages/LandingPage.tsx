@@ -127,42 +127,48 @@ export default function LandingPage() {
       <section className="mx-auto px-4 py-8 bg-(--product-section-bg)">
         <div className="max-w-7xl mx-auto px-4 w-full ">
           <div className="flex gap-8">
-            {/* Desktop Sidebar */}
-            <div className="hidden lg:block w-75 shrink-0">
-              <div className="sticky top-28">
-                <CategorySidebar
-                  activeCategory={activeCategory}
-                  onCategoryChange={handleCategoryChange}
-                />
-              </div>
-            </div>
-
-            {/* Mobile Sidebar Overlay */}
-            {isSidebarOpen && (
-              <div className="lg:hidden fixed inset-0 z-50 flex">
-                {/* Backdrop */}
-                <div
-                  className="fixed inset-0 bg-black/50"
-                  onClick={() => setIsSidebarOpen(false)}
-                />
-
-                {/* Sidebar */}
-                <div className="relative w-80 max-w-sm bg-white h-full overflow-y-auto">
-                  <div className="flex items-center justify-between p-4 border-b">
-                    <h2 className="font-semibold text-gray-900">Categories</h2>
-                    <button
-                      onClick={() => setIsSidebarOpen(false)}
-                      className="p-1 hover:bg-gray-100 rounded"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
+            {config.productsSection.showCategoryMenu && (
+              <>
+                {/* Desktop Sidebar */}
+                <div className="hidden lg:block w-75 shrink-0">
+                  <div className="sticky top-28">
+                    <CategorySidebar
+                      activeCategory={activeCategory}
+                      onCategoryChange={handleCategoryChange}
+                    />
                   </div>
-                  <CategorySidebar
-                    activeCategory={activeCategory}
-                    onCategoryChange={handleCategoryChange}
-                  />
                 </div>
-              </div>
+
+                {/* Mobile Sidebar Overlay */}
+                {isSidebarOpen && (
+                  <div className="lg:hidden fixed inset-0 z-50 flex">
+                    {/* Backdrop */}
+                    <div
+                      className="fixed inset-0 bg-black/50"
+                      onClick={() => setIsSidebarOpen(false)}
+                    />
+
+                    {/* Sidebar */}
+                    <div className="relative w-80 max-w-sm bg-white h-full overflow-y-auto">
+                      <div className="flex items-center justify-between p-4 border-b">
+                        <h2 className="font-semibold text-gray-900">
+                          Categories
+                        </h2>
+                        <button
+                          onClick={() => setIsSidebarOpen(false)}
+                          className="p-1 hover:bg-gray-100 rounded"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+                      <CategorySidebar
+                        activeCategory={activeCategory}
+                        onCategoryChange={handleCategoryChange}
+                      />
+                    </div>
+                  </div>
+                )}
+              </>
             )}
 
             {/* Product Grid */}

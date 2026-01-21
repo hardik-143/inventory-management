@@ -42,8 +42,8 @@ export interface HomePageConfig {
   productsSection: {
     backgroundColor: string;
     gapBetweenCards?: number;
+    showCategoryMenu: boolean;
   };
-  showCategoryMenu: boolean;
   // galleryBackgroundColor: string;
   // cardBackgroundColor: string;
   // cardBorderColor: string;

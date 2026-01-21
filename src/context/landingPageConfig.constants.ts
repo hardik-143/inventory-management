@@ -109,6 +109,8 @@ export const defaultHomeConfig: HomePageConfig = {
   },
   productsSection: {
     backgroundColor: "#FFFFFF",
+    gapBetweenCards: 16,
+    showCategoryMenu: true,
   },
 
   // accentColor: colorSchemes.blue.primary,

@@ -365,6 +365,27 @@ export default function HomeConfigPanel() {
           <Accordion title="Product Section">
             <>
               <div className="space-y-4">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={config.productsSection.showCategoryMenu}
+                    onChange={(e) =>
+                      updateConfig({
+                        productsSection: {
+                          ...config.productsSection,
+                          showCategoryMenu: e.target.checked,
+                        },
+                      })
+                    }
+                    className="w-4 h-4"
+                  />
+                  <span className="text-slate-900 dark:text-white">
+                    Show Category Menu
+                  </span>
+                </label>
+              </div>
+              <hr />
+              <div className="space-y-4">
                 <label className="block text-sm font-semibold text-slate-900 dark:text-white">
                   Border Radius: {config.productCard.borderRadius}px
                 </label>
@@ -453,7 +474,7 @@ export default function HomeConfigPanel() {
                     })
                   }
                   className="w-full"
-                />  
+                />
               </div>
               <div className="space-y-4">
                 <h3 className="font-semibold text-slate-900">
