@@ -160,7 +160,7 @@ export default function ProductCard({
       </div>
 
       {/* Product Info */}
-      <div className="pt-4 flex flex-col">
+      <div className="p-4 flex flex-col ">
         {/* Rating */}
         <div className="flex items-center mb-2">
           <div className="flex items-center">
