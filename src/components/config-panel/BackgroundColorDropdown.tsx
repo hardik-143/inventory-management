@@ -1,6 +1,7 @@
 import { softBackgroundColors } from "@/context/galleryConfig.constants";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 function BackgroundColorDropdown({
   selectedColor,
@@ -16,6 +17,40 @@ function BackgroundColorDropdown({
   }) => void;
 }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
+  const updateDropdownPosition = () => {
+    if (!buttonRef.current) return;
+
+    const rect = buttonRef.current.getBoundingClientRect();
+    const dropdownHeight = 260; // max-h-64 approx
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+
+    const openBelow = spaceBelow >= dropdownHeight || spaceBelow > spaceAbove;
+
+    setDropdownStyle({
+      position: "absolute",
+      left: rect.left,
+      width: rect.width,
+      top: openBelow
+        ? rect.bottom + window.scrollY + 6
+        : rect.top + window.scrollY - dropdownHeight - 6,
+      zIndex: 9999,
+    });
+  };
+  useEffect(() => {
+    if (isDropdownOpen) {
+      updateDropdownPosition();
+      window.addEventListener("scroll", updateDropdownPosition);
+      window.addEventListener("resize", updateDropdownPosition);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", updateDropdownPosition);
+      window.removeEventListener("resize", updateDropdownPosition);
+    };
+  }, [isDropdownOpen]);
 
   const selectedOption =
     softBackgroundColors.find((bg) => bg.value === selectedColor) ||
@@ -26,6 +61,7 @@ function BackgroundColorDropdown({
       {/* Main Button */}
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        ref={buttonRef}
         className="w-full flex items-center justify-between px-4 py-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 transition"
       >
         <div className="flex items-center gap-3">
@@ -60,58 +96,49 @@ function BackgroundColorDropdown({
       </button>
 
       {/* Dropdown Menu */}
-      {isDropdownOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-300 rounded-lg shadow-lg z-10 max-h-64 overflow-y-auto">
-          {softBackgroundColors.map((bg) => (
-            <button
-              key={bg.value}
-              onClick={() => {
-                if (onColorSelect) {
-                  onColorSelect(bg.value);
-                }
-                if (onSelect) {
-                  onSelect(bg);
-                }
-                setIsDropdownOpen(false);
-              }}
-              className={clsx(
-                "w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-100 transition",
-                "first:rounded-t-lg last:rounded-b-lg",
-                selectedColor === bg.value && "bg-blue-50",
-              )}
+      {isDropdownOpen &&
+        createPortal(
+          <>
+            {/* Dropdown */}
+            <div
+              style={dropdownStyle}
+              className="bg-white border border-slate-300 rounded-lg shadow-lg max-h-64 overflow-y-auto"
             >
-              {/* Color Preview */}
-              <div
-                className="w-8 h-8 rounded-full border-2 border-slate-300 shadow-sm shrink-0"
-                style={{ backgroundColor: bg.value }}
-              />
-
-              {/* Color Details */}
-              <div className="flex-1 min-w-0">
-                <div className="font-medium text-slate-900">{bg.name}</div>
-                <div className="text-sm text-slate-500 font-mono">
-                  {bg.value}
-                </div>
-              </div>
-
-              {/* Selected Checkmark */}
-              {selectedColor === bg.value && (
-                <svg
-                  className="w-5 h-5 text-blue-500 shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+              {softBackgroundColors.map((bg) => (
+                <button
+                  key={bg.value}
+                  onClick={() => {
+                    onColorSelect?.(bg.value);
+                    onSelect?.(bg);
+                    setIsDropdownOpen(false);
+                  }}
+                  className={clsx(
+                    "w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-100",
+                    selectedColor === bg.value && "bg-blue-50",
+                  )}
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
+                  <div
+                    className="w-8 h-8 rounded-full border"
+                    style={{ backgroundColor: bg.value }}
                   />
-                </svg>
-              )}
-            </button>
-          ))}
-        </div>
-      )}
+                  <div className="flex-1">
+                    <div className="font-medium">{bg.name}</div>
+                    <div className="text-xs font-mono text-slate-500">
+                      {bg.value}
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 z-[9998]"
+              onClick={() => setIsDropdownOpen(false)}
+            />
+          </>,
+          document.body,
+        )}
 
       {/* Backdrop to close dropdown */}
       {isDropdownOpen && (

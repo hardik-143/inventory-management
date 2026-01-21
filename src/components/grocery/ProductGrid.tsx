@@ -336,7 +336,7 @@ export default function ProductGrid({
 
       {/* Product Grid */}
       <div
-        className={`grid gap-6 ${
+        className={`grid gap-(--product-card-gap) ${
           viewMode === "grid"
             ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3"
             : "grid-cols-1"

@@ -107,6 +107,9 @@ export const defaultHomeConfig: HomePageConfig = {
     showAddToCartButton: true,
     showFavoriteIcon: true,
   },
+  productsSection: {
+    backgroundColor: "#FFFFFF",
+  },
 
   // accentColor: colorSchemes.blue.primary,
   // galleryBackgroundColor: "#0F1115",

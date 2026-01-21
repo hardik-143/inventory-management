@@ -39,6 +39,10 @@ export interface HomePageConfig {
     showAddToCartButton: boolean;
     showFavoriteIcon: boolean;
   };
+  productsSection: {
+    backgroundColor: string;
+    gapBetweenCards?: number;
+  };
   showCategoryMenu: boolean;
   // galleryBackgroundColor: string;
   // cardBackgroundColor: string;

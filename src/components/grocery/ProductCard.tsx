@@ -160,7 +160,7 @@ export default function ProductCard({
       </div>
 
       {/* Product Info */}
-      <div className="p-4 flex flex-col">
+      <div className="pt-4 flex flex-col">
         {/* Rating */}
         <div className="flex items-center mb-2">
           <div className="flex items-center">
@@ -200,7 +200,7 @@ export default function ProductCard({
             <button
               onClick={handleAddToCart}
               disabled={!product.inStock}
-              className="w-full flex items-center justify-center bg-(--primary-color) hover:bg-(--hover-color) disabled:bg-gray-300 disabled:cursor-not-allowed text-(--light-shade)! font-medium py-2.5 px-4 rounded-lg transition-colors"
+              className="w-full flex items-center justify-center bg-(--primary-color) hover:bg-(--hover-color) disabled:opacity-50! disabled:cursor-not-allowed text-(--light-shade)! font-medium py-2.5 px-4 rounded-lg transition-colors"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               Add to Cart

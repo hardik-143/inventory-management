@@ -362,7 +362,7 @@ export default function HomeConfigPanel() {
             </>
           </Accordion>
 
-          <Accordion title="Product Cards">
+          <Accordion title="Product Section">
             <>
               <div className="space-y-4">
                 <label className="block text-sm font-semibold text-slate-900 dark:text-white">
@@ -413,7 +413,6 @@ export default function HomeConfigPanel() {
                   ))}
                 </div>
               </div>
-              {/* padding */}
               <div className="space-y-4">
                 <label className="block text-sm font-semibold text-slate-900 dark:text-white">
                   Padding: {config.productCard.padding}px
@@ -432,6 +431,44 @@ export default function HomeConfigPanel() {
                     })
                   }
                   className="w-full"
+                />
+              </div>
+              <div className="space-y-4">
+                {/* gapBetweenCards */}
+                <label className="block text-sm font-semibold text-slate-900 dark:text-white">
+                  Gap Between Cards:{" "}
+                  {config.productsSection.gapBetweenCards ?? 16}px
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="64"
+                  value={config.productsSection.gapBetweenCards ?? 16}
+                  onChange={(e) =>
+                    updateConfig({
+                      productsSection: {
+                        ...config.productsSection,
+                        gapBetweenCards: Number(e.target.value),
+                      },
+                    })
+                  }
+                  className="w-full"
+                />  
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold text-slate-900">
+                  Gallery Background Color
+                </h3>
+                <BackgroundColorDropdown
+                  selectedColor={config.productsSection.backgroundColor}
+                  onColorSelect={(color) =>
+                    updateConfig({
+                      productsSection: {
+                        ...config.productsSection,
+                        backgroundColor: color,
+                      },
+                    })
+                  }
                 />
               </div>
             </>

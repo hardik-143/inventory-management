@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import HeroSection from "../components/grocery/HeroSection";
-import OfferSlider from "../components/grocery/OfferSlider";
 import CategorySidebar from "../components/grocery/CategorySidebar";
 import ProductGrid from "../components/grocery/ProductGrid";
 import { Menu, X } from "lucide-react";
@@ -36,6 +35,10 @@ export default function LandingPage() {
           "--active-color": config.activeColor,
           "--secondary-color": config.secondaryColor,
           "--light-shade": config.lightShade,
+          "--product-section-bg": config.productsSection.backgroundColor,
+          "--product-card-gap": `${
+            config.productsSection.gapBetweenCards ?? 16
+          }px`,
 
           // backgroundColor: config.galleryBackgroundColor,
           // color: config.textColor,
@@ -121,7 +124,7 @@ export default function LandingPage() {
       {/* <OfferSlider /> */}
 
       {/* Main Content */}
-      <section className="mx-auto px-4 py-8">
+      <section className="mx-auto px-4 py-8 bg-(--product-section-bg)">
         <div className="max-w-7xl mx-auto px-4 w-full ">
           <div className="flex gap-8">
             {/* Desktop Sidebar */}
