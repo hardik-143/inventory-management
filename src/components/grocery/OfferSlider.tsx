@@ -118,7 +118,7 @@ export default function OfferSlider() {
           </button>
 
           {/* Slider Content */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden py-4 -my-4">
             <div
               ref={sliderRef}
               className="flex transition-transform duration-300 ease-in-out"

@@ -1,11 +1,13 @@
 import React, { useState, useMemo } from "react";
 import ProductCard, { Product } from "./ProductCard";
 import { Grid, List, Filter, SortAsc } from "lucide-react";
+import { HomePageConfig } from "@/context/landingPageConfig.types";
 
 interface ProductGridProps {
   category: string;
   searchQuery?: string;
   className?: string;
+  cardsConfig: HomePageConfig["productCard"];
 }
 
 // Sample product data
@@ -163,35 +165,36 @@ const sampleProducts: Product[] = [
   },
 ];
 
-const sortOptions = [
-  { value: "relevance", label: "Most Relevant" },
-  { value: "price-low", label: "Price: Low to High" },
-  { value: "price-high", label: "Price: High to Low" },
-  { value: "rating", label: "Highest Rated" },
-  { value: "newest", label: "Newest First" },
-];
+// const sortOptions = [
+//   { value: "relevance", label: "Most Relevant" },
+//   { value: "price-low", label: "Price: Low to High" },
+//   { value: "price-high", label: "Price: High to Low" },
+//   { value: "rating", label: "Highest Rated" },
+//   { value: "newest", label: "Newest First" },
+// ];
 
-const filterOptions = [
-  { value: "all", label: "All Products" },
-  { value: "organic", label: "Organic Only" },
-  { value: "on-sale", label: "On Sale" },
-  { value: "in-stock", label: "In Stock Only" },
-];
+// const filterOptions = [
+//   { value: "all", label: "All Products" },
+//   { value: "organic", label: "Organic Only" },
+//   { value: "on-sale", label: "On Sale" },
+//   { value: "in-stock", label: "In Stock Only" },
+// ];
 
 export default function ProductGrid({
-  category,
-  searchQuery = "",
+  // category,
+  // searchQuery = "",
   className = "",
+  cardsConfig,
 }: ProductGridProps) {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [sortBy, setSortBy] = useState("relevance");
-  const [filterBy, setFilterBy] = useState("all");
-  const [showFilters, setShowFilters] = useState(false);
+  // const [sortBy, setSortBy] = useState("relevance");
+  // const [filterBy, setFilterBy] = useState("all");
+  // const [showFilters, setShowFilters] = useState(false);
 
-  console.log("ProductGrid props:", { category, searchQuery }, sampleProducts);
+  // console.log("ProductGrid props:", { category, searchQuery }, sampleProducts);
   // Filter and sort products
   const filteredProducts = useMemo(() => {
-    let products = [...sampleProducts];
+    const products = [...sampleProducts];
 
     // Apply search filter
     // if (searchQuery) {
@@ -239,7 +242,7 @@ export default function ProductGrid({
     // }
 
     return products;
-  }, [category, searchQuery, sortBy, filterBy]);
+  }, []);
 
   const handleAddToCart = (productId: string, quantity: number) => {
     console.log(`Added product ${productId} with quantity ${quantity} to cart`);
@@ -255,18 +258,18 @@ export default function ProductGrid({
     <div className={`${className}`}>
       {/* Header with controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <div>
+        {/* <div>
           <h2 className="text-2xl font-bold text-gray-900">
             {category === "all" ? "All Products" : "Products"}
           </h2>
           <p className="text-gray-600 text-sm mt-1">
             {filteredProducts.length} products found
           </p>
-        </div>
+        </div> */}
 
-        <div className="flex items-center space-x-3">
-          {/* Filter Button */}
-          {/* <button
+        {/* <div className="flex items-center space-x-3"> */}
+        {/* Filter Button */}
+        {/* <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors"
           >
@@ -274,8 +277,8 @@ export default function ProductGrid({
             Filter
           </button> */}
 
-          {/* Sort Dropdown */}
-          <select
+        {/* Sort Dropdown */}
+        {/* <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="px-3 py-2 bg-gray-100 border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
@@ -285,29 +288,30 @@ export default function ProductGrid({
                 {option.label}
               </option>
             ))}
-          </select>
+          </select> */}
 
-          {/* View Toggle */}
-          <div className="flex bg-gray-100 rounded-lg p-1">
-            <button
-              onClick={() => setViewMode("grid")}
-              className={`p-2 rounded-md transition-colors ${
-                viewMode === "grid" ? "bg-white shadow-sm" : "hover:bg-gray-200"
-              }`}
-            >
-              <Grid className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setViewMode("list")}
-              className={`p-2 rounded-md transition-colors ${
-                viewMode === "list" ? "bg-white shadow-sm" : "hover:bg-gray-200"
-              }`}
-            >
-              <List className="w-4 h-4" />
-            </button>
-          </div>
+        {/* View Toggle */}
+        {/* bg-gray-100 */}
+        <div className="flex border bg-gray-100 border-gray-500 rounded-[10px] p-1 gap-2">
+          <button
+            onClick={() => setViewMode("grid")}
+            className={`p-2 rounded-md transition-colors ${
+              viewMode === "grid" ? "bg-white shadow-sm" : "hover:bg-gray-200"
+            }`}
+          >
+            <Grid className={`w-4 h-4`} />
+          </button>
+          <button
+            onClick={() => setViewMode("list")}
+            className={`p-2 rounded-md transition-colors ${
+              viewMode === "list" ? "bg-white shadow-sm" : "hover:bg-gray-200"
+            }`}
+          >
+            <List className={`w-4 h-4`} />
+          </button>
         </div>
       </div>
+      {/* </div> */}
 
       {/* Filters Row */}
       {/* {showFilters && (
@@ -334,7 +338,7 @@ export default function ProductGrid({
       <div
         className={`grid gap-6 ${
           viewMode === "grid"
-            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3"
             : "grid-cols-1"
         }`}
       >
@@ -344,19 +348,20 @@ export default function ProductGrid({
             product={product}
             onAddToCart={handleAddToCart}
             onToggleFavorite={handleToggleFavorite}
-            className={viewMode === "list" ? "flex-row" : ""}
+            className={viewMode === "list" ? "flex-row flex" : ""}
+            cardsConfig={cardsConfig}
           />
         ))}
       </div>
 
       {/* Load More Button */}
-      {filteredProducts.length > 0 && (
+      {/* {filteredProducts.length > 0 && (
         <div className="text-center mt-12">
           <button className="bg-teal-600 hover:bg-teal-700 !text-white font-medium px-8 py-3 rounded-lg transition-colors">
             Load More Products
           </button>
         </div>
-      )}
+      )} */}
 
       {/* No Results */}
       {filteredProducts.length === 0 && (

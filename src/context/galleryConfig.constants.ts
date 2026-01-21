@@ -2,44 +2,44 @@ import { createContext } from "react";
 import { GalleryConfig, GalleryContextType } from "./galleryConfig.types";
 
 export const GalleryContext = createContext<GalleryContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const softBackgroundColors = [
-  { name: "Soft White", value: "#FAFAFA" },
-  { name: "Cloud Gray", value: "#F4F6F8" },
-  { name: "Mist Gray", value: "#EEF1F4" },
-  { name: "Pearl Gray", value: "#EDEDED" },
+  { name: "Soft White", value: "#FAFAFA", textColor: "#0F1115" },
+  { name: "Cloud Gray", value: "#F4F6F8", textColor: "#0F1115" },
+  { name: "Mist Gray", value: "#EEF1F4", textColor: "#0F1115" },
+  { name: "Pearl Gray", value: "#EDEDED", textColor: "#0F1115" },
 
-  { name: "Soft Blue", value: "#EAF2FF" },
-  { name: "Powder Blue", value: "#DCE9F9" },
-  { name: "Sky Wash", value: "#EDF4FF" },
+  { name: "Soft Blue", value: "#EAF2FF", textColor: "#0F1115" },
+  { name: "Powder Blue", value: "#DCE9F9", textColor: "#0F1115" },
+  { name: "Sky Wash", value: "#EDF4FF", textColor: "#0F1115" },
 
-  { name: "Soft Green", value: "#EAF7F0" },
-  { name: "Mint Green", value: "#DFF5EA" },
-  { name: "Sage Green", value: "#E6F2ED" },
+  { name: "Soft Green", value: "#EAF7F0", textColor: "#0F1115" },
+  { name: "Mint Green", value: "#DFF5EA", textColor: "#0F1115" },
+  { name: "Sage Green", value: "#E6F2ED", textColor: "#0F1115" },
 
-  { name: "Soft Yellow", value: "#FFF8E5" },
-  { name: "Butter Yellow", value: "#FFF1C1" },
-  { name: "Cream Yellow", value: "#FFF4D6" },
+  { name: "Soft Yellow", value: "#FFF8E5", textColor: "#0F1115" },
+  { name: "Butter Yellow", value: "#FFF1C1", textColor: "#0F1115" },
+  { name: "Cream Yellow", value: "#FFF4D6", textColor: "#0F1115" },
 
-  { name: "Soft Peach", value: "#FFEDE5" },
-  { name: "Peach Blush", value: "#FFE2D1" },
-  { name: "Coral Mist", value: "#FDE8E4" },
+  { name: "Soft Peach", value: "#FFEDE5", textColor: "#0F1115" },
+  { name: "Peach Blush", value: "#FFE2D1", textColor: "#0F1115" },
+  { name: "Coral Mist", value: "#FDE8E4", textColor: "#0F1115" },
 
-  { name: "Soft Pink", value: "#FCEEF5" },
-  { name: "Rose Wash", value: "#F8E1EB" },
-  { name: "Blush Pink", value: "#FBE4EA" },
+  { name: "Soft Pink", value: "#FCEEF5", textColor: "#0F1115" },
+  { name: "Rose Wash", value: "#F8E1EB", textColor: "#0F1115" },
+  { name: "Blush Pink", value: "#FBE4EA", textColor: "#0F1115" },
 
-  { name: "Soft Purple", value: "#F3EEFF" },
-  { name: "Lavender Mist", value: "#EDE7FA" },
-  { name: "Lilac Wash", value: "#F1ECF9" },
+  { name: "Soft Purple", value: "#F3EEFF", textColor: "#0F1115" },
+  { name: "Lavender Mist", value: "#EDE7FA", textColor: "#0F1115" },
+  { name: "Lilac Wash", value: "#F1ECF9", textColor: "#0F1115" },
 
-  { name: "Soft Teal", value: "#E6F7F6" },
-  { name: "Aqua Mist", value: "#DCF2F1" },
+  { name: "Soft Teal", value: "#E6F7F6", textColor: "#0F1115" },
+  { name: "Aqua Mist", value: "#DCF2F1", textColor: "#0F1115" },
 
-  { name: "Soft Brown", value: "#F5EFEA" },
-  { name: "Sand Beige", value: "#F3ECDC" },
+  { name: "Soft Brown", value: "#F5EFEA", textColor: "#0F1115" },
+  { name: "Sand Beige", value: "#F3ECDC", textColor: "#0F1115" },
   ///
   //   { name: "Soft Black", value: "#121212" },
   //   { name: "Charcoal", value: "#1A1A1A" },
@@ -70,58 +70,57 @@ export const softBackgroundColors = [
   //   { name: "Soft Teal Dark", value: "#1C2F2E" },
   //   { name: "Deep Aqua", value: "#213837" },
   ////
-  { name: "Obsidian Night", value: "#0F1115" },
-  { name: "Smoked Charcoal", value: "#191B1F" },
-  { name: "Warm Ash", value: "#22201E" },
+  { name: "Obsidian Night", value: "#0F1115", textColor: "#FAFAFA" },
+  { name: "Smoked Charcoal", value: "#191B1F", textColor: "#FAFAFA" },
+  { name: "Warm Ash", value: "#22201E", textColor: "#FAFAFA" },
 
-  { name: "Deep Space Blue", value: "#141C2B" },
-  { name: "Storm Navy", value: "#1C2740" },
-  { name: "Dusty Indigo", value: "#262B44" },
+  { name: "Deep Space Blue", value: "#141C2B", textColor: "#FAFAFA" },
+  { name: "Storm Navy", value: "#1C2740", textColor: "#FAFAFA" },
+  { name: "Dusty Indigo", value: "#262B44", textColor: "#FAFAFA" },
 
-  { name: "Pine Shadow", value: "#162521" },
-  { name: "Eucalyptus Dark", value: "#1E302A" },
-  { name: "Jade Smoke", value: "#203733" },
+  { name: "Pine Shadow", value: "#162521", textColor: "#FAFAFA" },
+  { name: "Eucalyptus Dark", value: "#1E302A", textColor: "#FAFAFA" },
+  { name: "Jade Smoke", value: "#203733", textColor: "#FAFAFA" },
 
-  { name: "Abyss Teal", value: "#112B2C" },
-  { name: "Deep Lagoon", value: "#163A3C" },
+  { name: "Abyss Teal", value: "#112B2C", textColor: "#FAFAFA" },
+  { name: "Deep Lagoon", value: "#163A3C", textColor: "#FAFAFA" },
 
-  { name: "Midnight Plum", value: "#241A2E" },
-  { name: "Royal Grape", value: "#2E2340" },
-  { name: "Cosmic Violet", value: "#342A4D" },
+  { name: "Midnight Plum", value: "#241A2E", textColor: "#FAFAFA" },
+  { name: "Royal Grape", value: "#2E2340", textColor: "#FAFAFA" },
+  { name: "Cosmic Violet", value: "#342A4D", textColor: "#FAFAFA" },
 
-  { name: "Dark Cherry", value: "#2A151B" },
-  { name: "Wine Ember", value: "#3A1F28" },
+  { name: "Dark Cherry", value: "#2A151B", textColor: "#FAFAFA" },
+  { name: "Wine Ember", value: "#3A1F28", textColor: "#FAFAFA" },
 
-  { name: "Dark Walnut", value: "#241C17" },
-  { name: "Roasted Cocoa", value: "#2F261F" },
+  { name: "Dark Walnut", value: "#241C17", textColor: "#FAFAFA" },
+  { name: "Roasted Cocoa", value: "#2F261F", textColor: "#FAFAFA" },
 
-  { name: "Burnt Olive", value: "#2A2F1D" },
-  { name: "Desert Night", value: "#33261C" },
+  { name: "Burnt Olive", value: "#2A2F1D", textColor: "#FAFAFA" },
+  { name: "Desert Night", value: "#33261C", textColor: "#FAFAFA" },
 
   /////
-  { name: "Electric Blue", value: "#2979FF" },
-  { name: "Neon Sky", value: "#00B4FF" },
-  { name: "Royal Azure", value: "#3F51FF" },
+  { name: "Electric Blue", value: "#2979FF", textColor: "#0F1115" },
+  { name: "Neon Sky", value: "#00B4FF", textColor: "#0F1115" },
+  { name: "Royal Azure", value: "#3F51FF", textColor: "#FAFAFA" },
 
-  { name: "Emerald Pop", value: "#00C853" },
-  { name: "Neon Mint", value: "#1DE9B6" },
-  { name: "Lime Spark", value: "#AEEA00" },
+  { name: "Emerald Pop", value: "#00C853", textColor: "#0F1115" },
+  { name: "Neon Mint", value: "#1DE9B6", textColor: "#0F1115" },
+  { name: "Lime Spark", value: "#AEEA00", textColor: "#0F1115" },
 
-  { name: "Crimson Flash", value: "#FF1744" },
-  { name: "Fire Orange", value: "#FF6D00" },
-  { name: "Sunset Blaze", value: "#FF9100" },
+  { name: "Crimson Flash", value: "#FF1744", textColor: "#0F1115" },
+  { name: "Fire Orange", value: "#FF6D00", textColor: "#0F1115" },
+  { name: "Sunset Blaze", value: "#FF9100", textColor: "#0F1115" },
 
-  { name: "Electric Yellow", value: "#FFD600" },
-  { name: "Golden Burst", value: "#FFC400" },
+  { name: "Electric Yellow", value: "#FFD600", textColor: "#0F1115" },
+  { name: "Golden Burst", value: "#FFC400", textColor: "#0F1115" },
 
-  { name: "Hot Pink", value: "#FF4081" },
-  { name: "Fuchsia Punch", value: "#E040FB" },
+  { name: "Hot Pink", value: "#FF4081", textColor: "#0F1115" },
+  { name: "Fuchsia Punch", value: "#E040FB", textColor: "#0F1115" },
 
-  { name: "Violet Storm", value: "#7C4DFF" },
-  { name: "Ultra Purple", value: "#651FFF" },
-
-  { name: "Aqua Pulse", value: "#00E5FF" },
-  { name: "Turbo Teal", value: "#00BFA5" },
+  { name: "Violet Storm", value: "#7C4DFF", textColor: "#FAFAFA" },
+  { name: "Ultra Purple", value: "#651FFF", textColor: "#FAFAFA" },
+  { name: "Aqua Pulse", value: "#00E5FF", textColor: "#0F1115" },
+  { name: "Turbo Teal", value: "#00BFA5", textColor: "#0F1115" },
 ] as const;
 
 export const defaultConfig: GalleryConfig = {

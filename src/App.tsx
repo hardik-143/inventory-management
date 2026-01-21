@@ -30,8 +30,9 @@ import Customers from "@/pages/Customers";
 import AddCustomer from "@/pages/AddCustomer";
 import StatusCatalogPreview from "./pages/Catalog/StatusCatalogPreview";
 import StatusCatalogGallery from "./pages/Catalog/StatusCatalogGallery";
-import GroceryLandingPage from "./pages/GroceryLandingPage";
+import LandingPage from "./pages/LandingPage";
 import { GalleryConfigProvider } from "./context/GalleryConfigContext";
+import { LandingPageConfigProvider } from "./context/LandingPageConfigContext";
 
 export default function App() {
   return (
@@ -39,8 +40,15 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <Routes>
-          {/* Main Grocery Landing Page */}
-          <Route path="/" element={<GroceryLandingPage />} />
+          {/* Main Landing Page */}
+          <Route
+            path="/"
+            element={
+              <LandingPageConfigProvider>
+                <LandingPage />
+              </LandingPageConfigProvider>
+            }
+          />
 
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>

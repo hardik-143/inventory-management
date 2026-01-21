@@ -2,121 +2,9 @@ import { useState } from "react";
 import clsx from "clsx";
 import { useGalleryConfig } from "@/hooks/useGalleryConfig";
 import { GalleryConfig } from "@/context/galleryConfig.types";
-import { softBackgroundColors } from "@/context/galleryConfig.constants";
 import Select from "@/components/form/Select";
 import Input from "@/components/form/input/InputField";
-
-// Custom Background Color Dropdown Component
-function BackgroundColorDropdown({
-  selectedColor,
-  onColorSelect,
-}: {
-  selectedColor: string;
-  onColorSelect: (color: string) => void;
-}) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const selectedOption =
-    softBackgroundColors.find((bg) => bg.value === selectedColor) ||
-    softBackgroundColors[0];
-
-  return (
-    <div className="relative">
-      {/* Main Button */}
-      <button
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="w-full flex items-center justify-between px-4 py-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 transition"
-      >
-        <div className="flex items-center gap-3">
-          {/* Color Preview */}
-          <div
-            className="w-6 h-6 rounded-full border-2 border-slate-300 shadow-sm"
-            style={{ backgroundColor: selectedOption.value }}
-          />
-          {/* Color Name */}
-          <span className="font-medium text-slate-900">
-            {selectedOption.name}
-          </span>
-        </div>
-
-        {/* Dropdown Arrow */}
-        <svg
-          className={clsx(
-            "w-5 h-5 transition-transform duration-200 text-slate-900",
-            isDropdownOpen ? "rotate-180" : "rotate-0"
-          )}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
-
-      {/* Dropdown Menu */}
-      {isDropdownOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-300 rounded-lg shadow-lg z-10 max-h-64 overflow-y-auto">
-          {softBackgroundColors.map((bg) => (
-            <button
-              key={bg.value}
-              onClick={() => {
-                onColorSelect(bg.value);
-                setIsDropdownOpen(false);
-              }}
-              className={clsx(
-                "w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-100 transition",
-                "first:rounded-t-lg last:rounded-b-lg",
-                selectedColor === bg.value && "bg-blue-50"
-              )}
-            >
-              {/* Color Preview */}
-              <div
-                className="w-8 h-8 rounded-full border-2 border-slate-300 shadow-sm flex-shrink-0"
-                style={{ backgroundColor: bg.value }}
-              />
-
-              {/* Color Details */}
-              <div className="flex-1 min-w-0">
-                <div className="font-medium text-slate-900">{bg.name}</div>
-                <div className="text-sm text-slate-500 font-mono">
-                  {bg.value}
-                </div>
-              </div>
-
-              {/* Selected Checkmark */}
-              {selectedColor === bg.value && (
-                <svg
-                  className="w-5 h-5 text-blue-500 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              )}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* Backdrop to close dropdown */}
-      {isDropdownOpen && (
-        <div
-          className="fixed inset-0 z-0"
-          onClick={() => setIsDropdownOpen(false)}
-        />
-      )}
-    </div>
-  );
-}
+import BackgroundColorDropdown from "../config-panel/BackgroundColorDropdown";
 
 export default function GalleryConfigPanel() {
   const { config, updateConfig, applyLightTheme, applyDarkTheme, resetConfig } =
@@ -155,8 +43,8 @@ export default function GalleryConfigPanel() {
       {/* Panel */}
       <div
         className={clsx(
-          "fixed inset-0 z-40 transition-opacity duration-300",
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          "fixed inset-0 z-51 transition-opacity duration-300",
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none",
         )}
         onClick={() => setIsOpen(false)}
         style={{
@@ -166,8 +54,8 @@ export default function GalleryConfigPanel() {
 
       <div
         className={clsx(
-          "fixed top-0 right-0 h-screen w-full max-w-md bg-white shadow-2xl z-50 transition-transform duration-300 overflow-y-auto",
-          isOpen ? "translate-x-0" : "translate-x-full"
+          "fixed top-0 right-0 h-screen w-full max-w-md bg-white shadow-2xl z-99 transition-transform duration-300 overflow-y-auto",
+          isOpen ? "translate-x-0" : "translate-x-full",
         )}
       >
         <div className="p-6 space-y-6">
@@ -205,7 +93,7 @@ export default function GalleryConfigPanel() {
                   "flex-1 px-4 py-2 rounded-lg font-medium transition",
                   config.theme === "light"
                     ? "bg-blue-500 text-white!"
-                    : "bg-slate-200 text-slate-900! hover:bg-slate-300"
+                    : "bg-slate-200 text-slate-900! hover:bg-slate-300",
                 )}
               >
                 ☀️&nbsp;&nbsp; Light
@@ -216,7 +104,7 @@ export default function GalleryConfigPanel() {
                   "flex-1 px-4 py-2 rounded-lg font-medium transition",
                   config.theme === "dark"
                     ? "bg-blue-500 text-white!"
-                    : "bg-slate-200 text-slate-900 hover:bg-slate-300"
+                    : "bg-slate-200 text-slate-900 hover:bg-slate-300",
                 )}
               >
                 🌙&nbsp;&nbsp; Dark
@@ -333,7 +221,7 @@ export default function GalleryConfigPanel() {
               options={[
                 { value: "grid", label: "Grid" },
                 { value: "masonry", label: "Masonry" },
-                { value: "carousel", label: "Carousel" },
+                // { value: "carousel", label: "Carousel" },
               ]}
               defaultValue={config.layout}
               onChange={(value) =>
@@ -428,7 +316,7 @@ export default function GalleryConfigPanel() {
                     "px-3 py-2 rounded-lg font-medium transition capitalize",
                     config.shadowSize === size
                       ? "bg-blue-500 text-white!"
-                      : "bg-slate-200 text-slate-900! hover:bg-slate-300"
+                      : "bg-slate-200 text-slate-900! hover:bg-slate-300",
                   )}
                 >
                   {size}
@@ -498,7 +386,7 @@ export default function GalleryConfigPanel() {
                   "flex-1 px-4 py-2 rounded-lg font-medium transition",
                   config.direction === "ltr"
                     ? "bg-blue-500 text-white!"
-                    : "bg-slate-200 text-slate-900! hover:bg-slate-300"
+                    : "bg-slate-200 text-slate-900! hover:bg-slate-300",
                 )}
               >
                 LTR (Left to Right)
@@ -509,7 +397,7 @@ export default function GalleryConfigPanel() {
                   "flex-1 px-4 py-2 rounded-lg font-medium transition",
                   config.direction === "rtl"
                     ? "bg-blue-500 text-white!"
-                    : "bg-slate-200 text-slate-900! hover:bg-slate-300"
+                    : "bg-slate-200 text-slate-900! hover:bg-slate-300",
                 )}
               >
                 RTL (Right to Left)
@@ -620,7 +508,7 @@ export default function GalleryConfigPanel() {
                 onChange={(value) =>
                   updateConfig({
                     headingFontWeight: Number(
-                      value
+                      value,
                     ) as GalleryConfig["headingFontWeight"],
                   })
                 }
@@ -690,7 +578,7 @@ export default function GalleryConfigPanel() {
                 onChange={(e) =>
                   updateConfig({
                     captionLines: Number(
-                      e.target.value
+                      e.target.value,
                     ) as GalleryConfig["captionLines"],
                   })
                 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Plus, Minus, Heart, Star, ShoppingCart } from "lucide-react";
+import { HomePageConfig } from "@/context/landingPageConfig.types";
+import clsx from "clsx";
 
 export interface Product {
   id: string;
@@ -22,6 +24,7 @@ interface ProductCardProps {
   onAddToCart?: (productId: string, quantity: number) => void;
   onToggleFavorite?: (productId: string) => void;
   className?: string;
+  cardsConfig: HomePageConfig["productCard"];
 }
 
 export default function ProductCard({
@@ -29,6 +32,7 @@ export default function ProductCard({
   onAddToCart,
   onToggleFavorite,
   className = "",
+  cardsConfig,
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -46,6 +50,17 @@ export default function ProductCard({
     onAddToCart?.(product.id, newQuantity);
   };
 
+  const getShadowClasses = () => {
+    const shadows = {
+      none: "",
+      sm: "shadow-sm",
+      md: "shadow-md",
+      lg: "shadow-lg",
+      xl: "shadow-xl",
+    };
+    return shadows[cardsConfig.shadowSize];
+  };
+
   const handleDecrement = () => {
     if (quantity > 0) {
       const newQuantity = quantity - 1;
@@ -56,16 +71,30 @@ export default function ProductCard({
 
   const discountPercentage = product.originalPrice
     ? Math.round(
-        ((product.originalPrice - product.price) / product.originalPrice) * 100
+        ((product.originalPrice - product.price) / product.originalPrice) * 100,
       )
     : 0;
 
   return (
     <div
-      className={`bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 overflow-hidden group ${className}`}
+      className={clsx(
+        `bg-white transition-all duration-300 border border-gray-100 overflow-hidden group`,
+        className,
+        getShadowClasses(),
+      )}
+      style={{
+        padding: `${cardsConfig.padding}px`,
+        borderRadius: cardsConfig.borderRadius,
+      }}
     >
       {/* Image Container */}
-      <div className="relative aspect-square bg-gray-50 overflow-hidden">
+      <div
+        className="relative aspect-square bg-gray-50 overflow-hidden"
+        style={{
+          borderTopLeftRadius: cardsConfig.borderRadius - cardsConfig.padding,
+          borderTopRightRadius: cardsConfig.borderRadius - cardsConfig.padding,
+        }}
+      >
         <div className="absolute top-0 pt-2 flex items-center justify-between w-full px-3 z-10 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.3),rgba(0,0,0,0))]">
           <div className="flex gap-3">
             {/* Discount Badge */}
@@ -131,7 +160,7 @@ export default function ProductCard({
       </div>
 
       {/* Product Info */}
-      <div className="p-4">
+      <div className="p-4 flex flex-col">
         {/* Rating */}
         <div className="flex items-center mb-2">
           <div className="flex items-center">
@@ -166,32 +195,34 @@ export default function ProductCard({
         </div>
 
         {/* Add to Cart Button */}
-        <div className="flex items-center">
+        <div className="flex items-center mt-auto">
           {quantity === 0 ? (
             <button
               onClick={handleAddToCart}
               disabled={!product.inStock}
-              className="w-full flex items-center justify-center bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 disabled:cursor-not-allowed !text-white font-medium py-2.5 px-4 rounded-lg transition-colors"
+              className="w-full flex items-center justify-center bg-(--primary-color) hover:bg-(--hover-color) disabled:bg-gray-300 disabled:cursor-not-allowed text-(--light-shade)! font-medium py-2.5 px-4 rounded-lg transition-colors"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               Add to Cart
             </button>
           ) : (
-            <div className="w-full flex items-center justify-between bg-teal-50 border border-teal-200 rounded-lg p-1">
+            <div className="w-full flex items-center justify-between bg-(--light-shade) border border-(--primary-color) rounded-lg p-1">
               <button
                 onClick={handleDecrement}
-                className="p-2 hover:bg-teal-100 rounded-md transition-colors"
+                className="p-2 hover:bg-(--primary-color) text-(--primary-color)! hover:text-(--light-shade)! rounded-md transition-colors"
               >
-                <Minus className="w-4 h-4 text-teal-600" />
+                <Minus className="w-4 h-4  text-inherit transition-all duration-300 ease-linear" />
               </button>
 
-              <span className="font-medium text-teal-900 px-2">{quantity}</span>
+              <span className="font-medium text-(--primary-color) px-2">
+                {quantity}
+              </span>
 
               <button
                 onClick={handleIncrement}
-                className="p-2 hover:bg-teal-100 rounded-md transition-colors"
+                className="p-2 hover:bg-(--primary-color) text-(--primary-color)! hover:text-(--light-shade)! rounded-md transition-colors"
               >
-                <Plus className="w-4 h-4 text-teal-600" />
+                <Plus className="w-4 h-4 text-inherit transition-all duration-300 ease-linear" />
               </button>
             </div>
           )}

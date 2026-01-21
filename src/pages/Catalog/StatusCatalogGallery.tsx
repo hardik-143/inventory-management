@@ -24,7 +24,7 @@ export default function StatusCatalogGallery() {
 
   const galleryItems = useMemo(
     () => getResolvedItems(state?.items),
-    [state?.items]
+    [state?.items],
   );
 
   const getBackgroundColor = () => {
@@ -34,12 +34,12 @@ export default function StatusCatalogGallery() {
     return "bg-slate-950";
   };
 
-  const getBackgroundGradient = () => {
-    if (config.theme === "light") {
-      return "bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.98),_rgba(241,245,249,0.75))]";
-    }
-    return "bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.98),_rgba(15,23,42,0.75))]";
-  };
+  // const getBackgroundGradient = () => {
+  //   if (config.theme === "light") {
+  //     return "bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.98),_rgba(241,245,249,0.75))]";
+  //   }
+  //   return "bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.98),_rgba(15,23,42,0.75))]";
+  // };
 
   const getTextColor = () => {
     if (config.theme === "light") {
@@ -144,7 +144,7 @@ export default function StatusCatalogGallery() {
               "group relative overflow-hidden rounded-lg transition break-inside-avoid",
               getShadowClasses(),
               config.enableHoverScale && "hover:shadow-2xl",
-              getCardStyles().className
+              getCardStyles().className,
             )}
             style={{
               borderRadius: `${config.borderRadius}px`,
@@ -155,7 +155,7 @@ export default function StatusCatalogGallery() {
             <div
               className={clsx(
                 "relative overflow-hidden",
-                config.layout !== "masonry" && getAspectRatioClass()
+                config.layout !== "masonry" && getAspectRatioClass(),
               )}
               style={
                 config.layout === "masonry"
@@ -168,7 +168,7 @@ export default function StatusCatalogGallery() {
                 alt={item.name}
                 className={clsx(
                   "h-full w-full object-cover transition-transform duration-500",
-                  config.enableHoverScale && "group-hover:scale-105"
+                  config.enableHoverScale && "group-hover:scale-105",
                 )}
                 loading="lazy"
               />
@@ -184,7 +184,7 @@ export default function StatusCatalogGallery() {
             <div
               className={clsx(
                 "relative space-y-3 px-5 pb-6 pt-5",
-                getFontFamilyClass()
+                getFontFamilyClass(),
               )}
               style={{
                 padding: `${config.cardPadding * 0.25}rem`,
@@ -257,7 +257,7 @@ export default function StatusCatalogGallery() {
         className={clsx(
           "mx-auto grid max-w-7xl py-10 px-4 sm:px-8",
           `grid-cols-1`,
-          getGridColsClass()
+          getGridColsClass(),
         )}
         style={{
           direction: config.direction as "ltr" | "rtl",
@@ -273,7 +273,7 @@ export default function StatusCatalogGallery() {
               config.layout === "masonry" && "break-inside-avoid mb-6",
               getShadowClasses(),
               config.enableHoverScale && "hover:shadow-2xl",
-              getCardStyles().className
+              getCardStyles().className,
             )}
             style={{
               borderRadius: `${config.borderRadius}px`,
@@ -283,7 +283,7 @@ export default function StatusCatalogGallery() {
             <div
               className={clsx(
                 "relative overflow-hidden",
-                getAspectRatioClass()
+                getAspectRatioClass(),
               )}
             >
               <img
@@ -291,7 +291,7 @@ export default function StatusCatalogGallery() {
                 alt={item.name}
                 className={clsx(
                   "h-full w-full object-cover transition-transform duration-500",
-                  config.enableHoverScale && "group-hover:scale-105"
+                  config.enableHoverScale && "group-hover:scale-105",
                 )}
                 loading="lazy"
               />
@@ -307,7 +307,7 @@ export default function StatusCatalogGallery() {
             <div
               className={clsx(
                 "relative space-y-3 px-5 pb-6 pt-5",
-                getFontFamilyClass()
+                getFontFamilyClass(),
               )}
               style={{
                 padding: `${config.cardPadding * 0.25}rem`,
@@ -376,20 +376,18 @@ export default function StatusCatalogGallery() {
     <div
       className={clsx(
         "relative min-h-dvh w-full overflow-hidden",
-        config.galleryBackgroundColor ? "" : getBackgroundColor()
+        config.galleryBackgroundColor ? "" : getBackgroundColor(),
       )}
       style={{
         direction: config.direction as "ltr" | "rtl",
-        ...{
-          backgroundColor: config.galleryBackgroundColor,
-        },
+        backgroundColor: config.galleryBackgroundColor,
       }}
     >
       {/* <div className={clsx("absolute inset-0", getBackgroundGradient())} /> */}
       <div
         className={clsx(
           "relative z-10 flex min-h-dvh w-full flex-col",
-          getTextColor()
+          getTextColor(),
         )}
       >
         <GalleryConfigPanel />
