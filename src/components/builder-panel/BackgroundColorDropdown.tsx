@@ -67,11 +67,11 @@ function BackgroundColorDropdown({
         <div className="flex items-center gap-3">
           {/* Color Preview */}
           <div
-            className="w-6 h-6 rounded-full border-2 border-slate-300 shadow-sm"
+            className="w-7 h-7 rounded-lg border border-slate-300 shadow-sm"
             style={{ backgroundColor: selectedOption.value }}
           />
           {/* Color Name */}
-          <span className="font-medium text-slate-900">
+          <span className="font-medium  text-slate-900">
             {selectedOption.name}
           </span>
         </div>
@@ -118,7 +118,7 @@ function BackgroundColorDropdown({
                   )}
                 >
                   <div
-                    className="w-8 h-8 rounded-full border"
+                    className="w-8 h-8 rounded-lg border"
                     style={{ backgroundColor: bg.value }}
                   />
                   <div className="flex-1">

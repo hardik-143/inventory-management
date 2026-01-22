@@ -93,6 +93,14 @@ const navItems: NavItem[] = [
   // },
 ];
 
+const builderItems: NavItem[] = [
+  {
+    icon: <GridIcon />,
+    name: "Collection Builder",
+    path: "/builder/collection",
+  },
+];
+
 const othersItems: NavItem[] = [
   {
     icon: <PieChartIcon />,
@@ -127,16 +135,18 @@ const othersItems: NavItem[] = [
   },
 ];
 
+type MenuTypes = "main" | "others" | "builder";
+
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const location = useLocation();
 
   const [openSubmenu, setOpenSubmenu] = useState<{
-    type: "main" | "others";
+    type: MenuTypes;
     index: number;
   } | null>(null);
   const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>(
-    {}
+    {},
   );
   const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
@@ -150,19 +160,25 @@ const AppSidebar: React.FC = () => {
       //   location.pathname === path || location.pathname.startsWith(`${path}/`)
       // );
     },
-    [location.pathname]
+    [location.pathname],
   );
 
   useEffect(() => {
     let submenuMatched = false;
-    ["main", "others"].forEach((menuType) => {
-      const items = menuType === "main" ? navItems : othersItems;
+    ["main", "builder", "others"].forEach((menuType) => {
+      // const items = menuType === "main" ? navItems : othersItems;
+      const items =
+        menuType === "main"
+          ? navItems
+          : menuType === "builder"
+            ? builderItems
+            : othersItems;
       items.forEach((nav, index) => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
             if (isActive(subItem.path)) {
               setOpenSubmenu({
-                type: menuType as "main" | "others",
+                type: menuType as MenuTypes,
                 index,
               });
               submenuMatched = true;
@@ -189,7 +205,7 @@ const AppSidebar: React.FC = () => {
     }
   }, [openSubmenu]);
 
-  const handleSubmenuToggle = (index: number, menuType: "main" | "others") => {
+  const handleSubmenuToggle = (index: number, menuType: MenuTypes) => {
     setOpenSubmenu((prevOpenSubmenu) => {
       if (
         prevOpenSubmenu &&
@@ -202,7 +218,7 @@ const AppSidebar: React.FC = () => {
     });
   };
 
-  const renderMenuItems = (items: NavItem[], menuType: "main" | "others") => (
+  const renderMenuItems = (items: NavItem[], menuType: MenuTypes) => (
     <ul className="flex flex-col gap-4">
       {items.map((nav, index) => (
         <li key={nav.name}>
@@ -332,8 +348,8 @@ const AppSidebar: React.FC = () => {
           isExpanded || isMobileOpen
             ? "w-[290px]"
             : isHovered
-            ? "w-[290px]"
-            : "w-[90px]"
+              ? "w-[290px]"
+              : "w-[90px]"
         }
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0`}
@@ -391,6 +407,22 @@ const AppSidebar: React.FC = () => {
                 )}
               </h2>
               {renderMenuItems(navItems, "main")}
+            </div>
+            <div className="">
+              <h2
+                className={`mb-4 text-xs uppercase flex leading-5 text-gray-400 ${
+                  !isExpanded && !isHovered
+                    ? "lg:justify-center"
+                    : "justify-start"
+                }`}
+              >
+                {isExpanded || isHovered || isMobileOpen ? (
+                  "Builder"
+                ) : (
+                  <HorizontaLDots />
+                )}
+              </h2>
+              {renderMenuItems(builderItems, "builder")}
             </div>
             <div className="">
               <h2

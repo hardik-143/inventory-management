@@ -16,6 +16,7 @@ export interface HomePageConfig {
     height: number;
   };
   accentColor: string;
+  showCategoryMenu: boolean;
   primaryColor: string;
   secondaryColor: string;
   hoverColor: string;

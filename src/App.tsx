@@ -33,6 +33,8 @@ import StatusCatalogGallery from "./pages/Catalog/StatusCatalogGallery";
 import LandingPage from "./pages/LandingPage";
 import { GalleryConfigProvider } from "./context/GalleryConfigContext";
 import { LandingPageConfigProvider } from "./context/LandingPageConfigContext";
+import CollectionBuilder from "./pages/Builder/CollectionBuilder";
+import { CollectionConfigProvider } from "./context/colllection/CollectionConfigContext";
 
 export default function App() {
   return (
@@ -60,6 +62,15 @@ export default function App() {
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/customers/add" element={<AddCustomer />} />
+
+            <Route
+              path="/builder/collection"
+              element={
+                <CollectionConfigProvider>
+                  <CollectionBuilder />
+                </CollectionConfigProvider>
+              }
+            />
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />

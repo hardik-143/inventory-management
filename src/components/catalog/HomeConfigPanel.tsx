@@ -1,8 +1,8 @@
 import { useState } from "react";
 import clsx from "clsx";
 import { useHomePageConfig } from "../../hooks/useHomePageConfig";
-import Accordion from "../config-panel/Accordion";
-import BackgroundColorDropdown from "../config-panel/BackgroundColorDropdown";
+import Accordion from "../builder-panel/Accordion";
+import BackgroundColorDropdown from "../builder-panel/BackgroundColorDropdown";
 import { colorSchemes } from "@/context/landingPageConfig.constants";
 import { ColorScheme, HomePageConfig } from "@/context/landingPageConfig.types";
 

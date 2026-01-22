@@ -4,7 +4,7 @@ import { useGalleryConfig } from "@/hooks/useGalleryConfig";
 import { GalleryConfig } from "@/context/galleryConfig.types";
 import Select from "@/components/form/Select";
 import Input from "@/components/form/input/InputField";
-import BackgroundColorDropdown from "../config-panel/BackgroundColorDropdown";
+import BackgroundColorDropdown from "../builder-panel/BackgroundColorDropdown";
 
 export default function GalleryConfigPanel() {
   const { config, updateConfig, applyLightTheme, applyDarkTheme, resetConfig } =
