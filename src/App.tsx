@@ -31,6 +31,7 @@ import AddCustomer from "@/pages/AddCustomer";
 import StatusCatalogPreview from "./pages/Catalog/StatusCatalogPreview";
 import StatusCatalogGallery from "./pages/Catalog/StatusCatalogGallery";
 import LandingPage from "./pages/LandingPage";
+import StaticLandingPage from "./pages/StaticLandingPage";
 import { GalleryConfigProvider } from "./context/GalleryConfigContext";
 import { LandingPageConfigProvider } from "./context/LandingPageConfigContext";
 import CollectionBuilder from "./pages/Builder/CollectionBuilder";
@@ -42,9 +43,12 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <Routes>
+          {/* Static Landing Page - Root Route */}
+          <Route path="/" element={<StaticLandingPage />} />
+
           {/* Main Landing Page */}
           <Route
-            path="/"
+            path="/abc"
             element={
               <LandingPageConfigProvider>
                 <LandingPage />
