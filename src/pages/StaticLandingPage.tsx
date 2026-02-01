@@ -1,5 +1,21 @@
 import { useState } from "react";
-import { Menu, X, Search, Zap, CheckCircle, Settings } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Menu,
+  X,
+  BarChart3,
+  Clock,
+  Users,
+  FileText,
+  TrendingUp,
+  Lock,
+  Cloud,
+  Smartphone,
+  CheckCircle,
+  ArrowRight,
+  Zap,
+  Shield,
+} from "lucide-react";
 
 export default function StaticLandingPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -7,503 +23,830 @@ export default function StaticLandingPage() {
   return (
     <div className="bg-white">
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 border-b bg-white shadow-sm h-20 flex items-center">
+      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md shadow-sm h-20 flex items-center">
         <div className="max-w-7xl mx-auto w-full px-4 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition duration-200"
               onClick={() => setIsSidebarOpen(true)}
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-6 h-6 text-gray-700" />
             </button>
 
             {/* Logo */}
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-teal-600">FreshMart</h1>
+            <div className="flex items-center gap-2 group cursor-pointer">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
+                <FileText className="w-5 h-5 text-white" />
+              </div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+                InvoiceHub
+              </h1>
             </div>
 
             {/* Navigation Menu (Desktop) */}
-            <nav className="hidden lg:flex items-center space-x-8">
-              <a
-                href="#categories"
-                className="text-gray-600 hover:text-teal-600 transition"
-              >
-                Categories
-              </a>
+            <nav className="hidden lg:flex items-center space-x-1">
               <a
                 href="#features"
-                className="text-gray-600 hover:text-teal-600 transition"
+                className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium text-sm"
               >
                 Features
               </a>
               <a
-                href="#testimonials"
-                className="text-gray-600 hover:text-teal-600 transition"
+                href="#pricing"
+                className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium text-sm"
               >
-                Testimonials
+                Pricing
+              </a>
+              <a
+                href="#integrations"
+                className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium text-sm"
+              >
+                Integrations
               </a>
               <a
                 href="#contact"
-                className="text-gray-600 hover:text-teal-600 transition"
+                className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium text-sm"
               >
                 Contact
               </a>
             </nav>
 
-            {/* Cart Button */}
-            <button className="relative p-2 rounded-lg hover:bg-gray-100 transition hidden lg:block">
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              <span className="absolute top-1 right-1 bg-teal-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+            {/* Sign In Button */}
+            <div className="hidden lg:flex items-center gap-3">
+              <button className="px-4 py-2 text-blue-600 font-semibold hover:bg-blue-50 rounded-lg transition-all duration-200">
+                Sign In
+              </button>
+              <button className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white! rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl">
+                Try Free
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isSidebarOpen && (
           <div
-            className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+            className="fixed inset-0 z-40 bg-black/50 lg:hidden backdrop-blur-sm animate-fadeIn"
             onClick={() => setIsSidebarOpen(false)}
           >
             <div
-              className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg"
+              className="fixed inset-y-0 left-0 w-64 bg-white shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-4 border-b flex items-center justify-between">
+              <div className="p-4 border-b border-gray-200 flex items-center justify-between">
                 <h2 className="font-semibold text-gray-900">Menu</h2>
                 <button
                   onClick={() => setIsSidebarOpen(false)}
-                  className="p-1 hover:bg-gray-100 rounded"
+                  className="p-1 hover:bg-gray-100 rounded-lg transition-colors duration-200"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-5 h-5 text-gray-700" />
                 </button>
               </div>
               <nav className="py-4 space-y-2">
                 <a
-                  href="#categories"
-                  className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                  onClick={() => setIsSidebarOpen(false)}
-                >
-                  Categories
-                </a>
-                <a
                   href="#features"
-                  className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
+                  className="block px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200 font-medium"
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   Features
                 </a>
                 <a
-                  href="#testimonials"
-                  className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
+                  href="#pricing"
+                  className="block px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200 font-medium"
                   onClick={() => setIsSidebarOpen(false)}
                 >
-                  Testimonials
+                  Pricing
+                </a>
+                <a
+                  href="#integrations"
+                  className="block px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200 font-medium"
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  Integrations
                 </a>
                 <a
                   href="#contact"
-                  className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
+                  className="block px-4 py-2.5 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200 font-medium"
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   Contact
                 </a>
               </nav>
+              <div className="p-4 border-t border-gray-200 space-y-3">
+                <button className="w-full px-4 py-2 text-blue-600 font-semibold hover:bg-blue-50 rounded-lg transition-all duration-200">
+                  Sign In
+                </button>
+                <button className="w-full px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white! rounded-lg font-semibold">
+                  Try Free
+                </button>
+              </div>
             </div>
           </div>
         )}
       </header>
 
       {/* Hero Section */}
-      <section className="px-4 py-16 lg:py-24 bg-gradient-to-r from-teal-50 to-green-50 animate-fadeIn">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
-            Fresh Groceries Delivered in 90 Minutes
-          </h1>
+      <section className="px-4 py-20 lg:py-32 bg-gradient-to-br from-blue-50 via-white to-blue-50 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-0 left-10 w-96 h-96 bg-gradient-to-tr from-blue-200 to-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
 
-          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Shop from the comfort of your home and get fresh, high-quality
-            groceries delivered to your doorstep with guaranteed freshness.
-          </p>
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/80 backdrop-blur-sm rounded-full border border-blue-100 hover:border-blue-300 transition-colors"
+          >
+            <span className="w-2 h-2 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full animate-pulse"></span>
+            <span className="text-sm font-semibold text-blue-700">
+              ✨ Trusted by 5000+ Businesses
+            </span>
+          </motion.div>
 
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <div className="flex bg-white shadow-xl rounded-lg overflow-hidden">
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="flex-1 px-4 py-4 text-gray-700 placeholder-gray-500 focus:outline-none"
-              />
-              <button className="px-6 py-4 bg-teal-600 hover:bg-teal-700 text-white transition-all duration-300">
-                <Search className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
+          >
+            Invoice & Stock Management
+            <span className="block bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
+              Made Effortless
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed"
+          >
+            Automate your invoicing, manage inventory in real-time, and scale
+            your business with our comprehensive SaaS platform designed for
+            modern enterprises.
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-lg transition">
-              Shop Now
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          >
+            <button className="group bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white! font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 mx-auto sm:mx-0">
+              <span>Start Free Trial</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="px-6 py-3 border-2 border-teal-600 text-teal-600 rounded-lg font-semibold hover:bg-teal-50 transition">
-              Learn More
+            <button className="group px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 active:scale-95">
+              Schedule Demo
             </button>
+          </motion.div>
+
+          {/* Trust Indicators */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-8 text-gray-600 pt-8 border-t border-white/50"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                <CheckCircle className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-sm font-medium">14-Day Free Trial</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                <Shield className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-sm font-medium">Enterprise Security</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                <Users className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-sm font-medium">24/7 Support</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Key Features Section */}
+      <section id="features" className="px-4 py-20 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Powerful Features for Modern Businesses
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Everything you need to manage invoices and inventory in one
+              unified platform
+            </p>
+          </motion.div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Smart Invoice Management",
+                description:
+                  "Create, send, and track invoices with automated reminders. Supports recurring billing and custom templates.",
+                icon: FileText,
+              },
+              {
+                title: "Real-Time Stock Control",
+                description:
+                  "Track inventory across multiple locations with live updates and low-stock alerts.",
+                icon: BarChart3,
+              },
+              {
+                title: "Automated Analytics",
+                description:
+                  "Get actionable insights with detailed reports on sales, expenses, and inventory trends.",
+                icon: TrendingUp,
+              },
+              {
+                title: "Multi-User Collaboration",
+                description:
+                  "Invite team members with role-based permissions and track all changes in real-time.",
+                icon: Users,
+              },
+              {
+                title: "Cloud-Based Solution",
+                description:
+                  "Access your data anywhere, anytime with our secure cloud infrastructure.",
+                icon: Cloud,
+              },
+              {
+                title: "Mobile App",
+                description:
+                  "Manage invoices and inventory on-the-go with our native iOS and Android apps.",
+                icon: Smartphone,
+              },
+            ].map((feature, index) => {
+              const IconComponent = feature.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="group p-8 rounded-2xl border border-gray-200 bg-white hover:border-blue-300 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                >
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
+                    <IconComponent className="w-7 h-7 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section id="categories" className="px-4 py-16 bg-gray-50">
+      {/* Pricing Section */}
+      <section
+        id="pricing"
+        className="px-4 py-20 lg:py-28 bg-gradient-to-br from-gray-50 to-white"
+      >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Shop by Category
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Simple, Transparent Pricing
             </h2>
-            <p className="text-gray-600 text-lg">
-              Explore our wide range of fresh products across all categories
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Choose the perfect plan for your business. No hidden fees.
+            </p>
+          </motion.div>
+
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Starter",
+                price: "$49",
+                period: "/month",
+                description: "Perfect for freelancers and small businesses",
+                features: [
+                  "Up to 100 invoices/month",
+                  "Basic inventory tracking",
+                  "Email support",
+                  "1 user account",
+                  "Basic reports",
+                ],
+                cta: "Start Free Trial",
+                highlighted: false,
+              },
+              {
+                name: "Professional",
+                price: "$149",
+                period: "/month",
+                description: "For growing businesses with multiple users",
+                features: [
+                  "Unlimited invoices",
+                  "Advanced inventory management",
+                  "Priority email & chat support",
+                  "Up to 5 user accounts",
+                  "Advanced analytics & reports",
+                  "API access",
+                ],
+                cta: "Start Free Trial",
+                highlighted: true,
+              },
+              {
+                name: "Enterprise",
+                price: "Custom",
+                period: "pricing",
+                description: "For large-scale operations",
+                features: [
+                  "Everything in Professional",
+                  "Unlimited user accounts",
+                  "24/7 phone support",
+                  "Custom integrations",
+                  "Dedicated account manager",
+                  "On-premise option",
+                ],
+                cta: "Contact Sales",
+                highlighted: false,
+              },
+            ].map((plan, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className={`relative rounded-2xl transition-all duration-300 group ${
+                  plan.highlighted
+                    ? "border-2 border-blue-600 bg-white shadow-2xl -translate-y-4"
+                    : "border border-gray-200 bg-white shadow-sm hover:shadow-lg"
+                }`}
+              >
+                {plan.highlighted && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-bold rounded-full">
+                    Most Popular
+                  </div>
+                )}
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    {plan.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-6">
+                    {plan.description}
+                  </p>
+                  <div className="mb-6">
+                    <span className="text-5xl font-bold text-gray-900">
+                      {plan.price}
+                    </span>
+                    <span className="text-gray-600 ml-2">{plan.period}</span>
+                  </div>
+                  <button
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 mb-8 ${
+                      plan.highlighted
+                        ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white! hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl"
+                        : "border-2 border-blue-600 text-blue-600 hover:bg-blue-50"
+                    }`}
+                  >
+                    {plan.cta}
+                  </button>
+                  <div className="space-y-4 mt-4">
+                    {plan.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations Section */}
+      <section id="integrations" className="px-4 py-20 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Connect with Your Favorite Tools
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Seamless integrations with popular platforms to streamline your
+              workflow
             </p>
           </div>
 
-          {/* Category Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Integration Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              {
-                title: "Fruits & Vegetables",
-                count: "485 items",
-                bgColor: "bg-red-100",
-                icon: "🛒",
-              },
-              {
-                title: "Dairy & Eggs",
-                count: "186 items",
-                bgColor: "bg-yellow-100",
-                icon: "😊",
-              },
-              {
-                title: "Meat & Fish",
-                count: "142 items",
-                bgColor: "bg-green-100",
-                icon: "🌿",
-              },
-              {
-                title: "Snacks & Beverages",
-                count: "325 items",
-                bgColor: "bg-orange-100",
-                icon: "⚙️",
-              },
-            ].map((category, index) => (
+              "Stripe",
+              "PayPal",
+              "Quickbooks",
+              "Shopify",
+              "Zapier",
+              "Google Drive",
+              "Slack",
+              "Square",
+            ].map((integration, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg shadow-sm hover:shadow-lg transition p-6 text-center cursor-pointer hover:-translate-y-1"
+                className="group p-6 rounded-xl border border-gray-200 bg-white hover:border-blue-300 hover:shadow-lg transition-all duration-300 text-center hover:-translate-y-1 cursor-pointer"
               >
-                <div
-                  className={`w-16 h-16 ${category.bgColor} rounded-lg flex items-center justify-center mx-auto mb-4 text-2xl`}
-                >
-                  {category.icon}
+                <div className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-50 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <span className="text-2xl">🔗</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {category.title}
-                </h3>
-                <p className="text-gray-600 mb-4">{category.count}</p>
-                <button className="text-teal-600 font-semibold hover:text-teal-700">
-                  Browse →
-                </button>
+                <p className="font-semibold text-gray-900">{integration}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="px-4 py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose FreshMart?
-            </h2>
-            <p className="text-gray-600 text-lg">
-              We provide the best shopping experience with quality and
-              convenience
-            </p>
-          </div>
-
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Zap className="w-10 h-10 text-teal-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Fast Delivery
-              </h3>
-              <p className="text-gray-600">
-                Get your groceries delivered in just 90 minutes with our rapid
-                delivery service.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-10 h-10 text-green-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                Fresh Quality
-              </h3>
-              <p className="text-gray-600">
-                All our products are carefully selected and checked for
-                freshness and quality.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Settings className="w-10 h-10 text-blue-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                24/7 Support
-              </h3>
-              <p className="text-gray-600">
-                Our dedicated customer support team is available round the clock
-                to help you.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Special Offer Banner */}
-      <section className="px-4 py-12 bg-gradient-to-r from-orange-500 to-pink-500">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-4xl font-bold mb-4">Special Offer!</h2>
-          <p className="text-xl mb-6 opacity-90">
-            Get 20% off on your first order
-          </p>
-          <button className="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-            Claim Offer
-          </button>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
-      <section id="testimonials" className="px-4 py-16 bg-gray-50">
+      <section className="px-4 py-20 lg:py-28 bg-gradient-to-br from-blue-50 to-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              What Our Customers Say
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Loved by Business Leaders
             </h2>
-            <p className="text-gray-600 text-lg">
-              Over 3000+ satisfied customers trust FreshMart
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              See what our customers say about transforming their operations
             </p>
-          </div>
+          </motion.div>
 
           {/* Testimonials Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Sarah Johnson",
-                location: "California, USA",
-                text: "FreshMart has completely changed how I shop for groceries. The quality is exceptional and delivery is incredibly fast. Highly recommended!",
+                name: "Rajesh Sharma",
+                role: "CEO, TechVision Solutions",
+                text: "InvoiceHub transformed how we manage invoicing and inventory. We reduced manual work by 70% and improved accuracy significantly.",
               },
               {
-                name: "Mike Chen",
-                location: "New York, USA",
-                text: "The 90-minute delivery is amazing! Fresh vegetables and fruits every time. I've saved so much time and the prices are competitive.",
+                name: "Priya Patel",
+                role: "Operations Manager, RetailCo",
+                text: "The real-time stock management feature helped us avoid stockouts completely. Our inventory costs dropped by 40% in the first month.",
               },
               {
-                name: "Emily Rodriguez",
-                location: "Texas, USA",
-                text: "Customer service is top-notch! Had an issue with my first order and they resolved it immediately. Now I'm a regular customer.",
+                name: "Amit Verma",
+                role: "Founder, QuickStartup",
+                text: "Best investment we made for our business. The platform is intuitive, powerful, and the customer support is outstanding.",
               },
             ].map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
-                  <div className="ml-4">
-                    <h4 className="font-semibold text-gray-900">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-gray-600 text-sm">
-                      {testimonial.location}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex mb-4">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-8 border border-gray-100 hover:border-blue-200 hover:-translate-y-1"
+              >
+                <div className="flex mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">
+                    <span key={i} className="text-yellow-400 text-lg">
                       ★
                     </span>
                   ))}
                 </div>
-                <p className="text-gray-600">{testimonial.text}</p>
-              </div>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  {testimonial.text}
+                </p>
+                <div>
+                  <h4 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-gray-500 text-sm">{testimonial.role}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="px-4 py-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Still Need Help?
-          </h2>
-          <p className="text-gray-600 text-lg mb-8">
-            Get in touch with our support team and we'll be happy to assist you.
-          </p>
+      <section id="contact" className="px-4 py-20 lg:py-28 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Get Started Today
+            </h2>
+            <p className="text-xl text-gray-600">
+              Questions? Reach out to our team or start your free trial
+              immediately
+            </p>
+          </div>
 
-          <div className="bg-white border border-gray-200 rounded-lg p-8">
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600"
-              />
-              <input
-                type="text"
-                placeholder="Subject"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600"
-              />
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 md:p-12 shadow-sm hover:shadow-lg transition-shadow">
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input
+                  type="text"
+                  placeholder="Company Name"
+                  className="px-6 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all bg-white text-gray-900 placeholder-gray-500"
+                />
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="px-6 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all bg-white text-gray-900 placeholder-gray-500"
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="px-6 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all bg-white text-gray-900 placeholder-gray-500"
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className="px-6 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all bg-white text-gray-900 placeholder-gray-500"
+                />
+              </div>
+              <select className="w-full px-6 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all bg-white text-gray-900">
+                <option>Select your business type...</option>
+                <option>Retail</option>
+                <option>Manufacturing</option>
+                <option>Services</option>
+                <option>Consulting</option>
+                <option>Other</option>
+              </select>
               <textarea
-                placeholder="Your Message"
+                placeholder="Tell us about your needs"
                 rows={5}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600"
+                className="w-full px-6 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all bg-white text-gray-900 placeholder-gray-500 resize-none"
               ></textarea>
-              <button className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-lg transition">
+              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white! font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95">
                 Send Message
               </button>
             </form>
           </div>
+
+          {/* Contact Info */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
+                <Clock className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                Quick Response
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Get answers within 2 hours
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
+                <Lock className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                Data Security
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Enterprise-grade encryption
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Quick Setup</h3>
+              <p className="text-gray-600 text-sm">Up and running in minutes</p>
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="px-4 py-16 lg:py-24 bg-gradient-to-r from-blue-600 to-blue-700 relative overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-white/10 rounded-full blur-3xl"></div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="max-w-4xl mx-auto text-center relative z-10"
+        >
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Ready to Transform Your Business?
+          </h2>
+          <p className="text-xl text-white/90 mb-8 opacity-95 max-w-2xl mx-auto">
+            Join thousands of businesses already using InvoiceHub to streamline
+            their operations
+          </p>
+          <button className="bg-white text-gray-900! px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-95">
+            Start Your 14-Day Free Trial
+          </button>
+        </motion.div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 mt-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            {/* Column 1 */}
+      <footer className="bg-gradient-to-br from-gray-900 to-gray-950 text-white py-16 border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            {/* Column 1 - Brand */}
             <div>
-              <h3 className="font-bold text-xl mb-4 text-teal-400">
-                FreshMart
-              </h3>
-              <p className="text-gray-300 mb-4">
-                Your trusted partner for fresh groceries delivered in 90
-                minutes.
+              <div className="flex items-center gap-2 mb-4 group cursor-pointer">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
+                  <FileText className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="font-bold text-xl bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">
+                  InvoiceHub
+                </h3>
+              </div>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                Simplify your invoicing and inventory management with our
+                powerful cloud-based platform.
               </p>
               <div className="flex space-x-4">
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-teal-400 transition"
+                  className="w-10 h-10 rounded-lg bg-white/10 hover:bg-blue-600 transition-all duration-300 flex items-center justify-center"
                 >
-                  f
+                  <span className="text-sm">f</span>
                 </a>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-teal-400 transition"
+                  className="w-10 h-10 rounded-lg bg-white/10 hover:bg-blue-600 transition-all duration-300 flex items-center justify-center"
                 >
-                  𝕏
+                  <span className="text-sm">𝕏</span>
                 </a>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-teal-400 transition"
+                  className="w-10 h-10 rounded-lg bg-white/10 hover:bg-blue-600 transition-all duration-300 flex items-center justify-center"
                 >
-                  ⊙
+                  <span className="text-sm">in</span>
                 </a>
               </div>
             </div>
 
-            {/* Column 2 */}
+            {/* Column 2 - Product */}
             <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-300">
+              <h4 className="font-bold text-white mb-6 flex items-center gap-2">
+                <span className="w-1 h-1 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full"></span>
+                Product
+              </h4>
+              <ul className="space-y-3 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-teal-400 transition">
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Integrations
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Security
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3 - Company */}
+            <div>
+              <h4 className="font-bold text-white mb-6 flex items-center gap-2">
+                <span className="w-1 h-1 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full"></span>
+                Company
+              </h4>
+              <ul className="space-y-3 text-gray-400">
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-teal-400 transition">
-                    Contact
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Blog
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-teal-400 transition">
-                    FAQs
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition">
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
                     Careers
                   </a>
                 </li>
-              </ul>
-            </div>
-
-            {/* Column 3 */}
-            <div>
-              <h4 className="font-semibold mb-4">Customer Service</h4>
-              <ul className="space-y-2 text-gray-300">
                 <li>
-                  <a href="#" className="hover:text-teal-400 transition">
-                    Help Center
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition">
-                    Track Your Order
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition">
-                    Returns
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-teal-400 transition">
-                    Shipping Info
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Contact
                   </a>
                 </li>
               </ul>
             </div>
 
-            {/* Column 4 */}
+            {/* Column 4 - Legal */}
             <div>
-              <h4 className="font-semibold mb-4">Newsletter</h4>
-              <p className="text-gray-300 mb-4">
-                Subscribe to get special offers and updates
-              </p>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2 rounded-l-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none"
-                />
-                <button className="px-4 py-2 bg-teal-600 hover:bg-teal-700 rounded-r-lg transition">
-                  Subscribe
-                </button>
-              </div>
+              <h4 className="font-bold text-white mb-6 flex items-center gap-2">
+                <span className="w-1 h-1 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full"></span>
+                Legal
+              </h4>
+              <ul className="space-y-3 text-gray-400">
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Compliance
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-blue-400 transition-colors duration-300 font-medium"
+                  >
+                    Cookie Policy
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 FreshMart. All rights reserved.</p>
+          <div className="border-t border-gray-800 pt-8">
+            <div className="text-center text-gray-500 text-sm">
+              <p className="mb-2">
+                &copy; 2024 InvoiceHub. All rights reserved.
+              </p>
+              <p className="text-xs">Made for modern business excellence</p>
+            </div>
           </div>
         </div>
       </footer>
