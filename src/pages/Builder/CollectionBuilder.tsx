@@ -14,7 +14,6 @@ import {
   getTextColor,
 } from "@/helpers/builderHelper";
 import { useCollectionConfig } from "@/hooks/useCollectionConfig";
-import input from "antd/es/input";
 import clsx from "clsx";
 import {
   AlignHorizontalSpaceBetween,

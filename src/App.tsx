@@ -30,11 +30,11 @@ import Customers from "@/pages/Customers";
 import AddCustomer from "@/pages/AddCustomer";
 import StatusCatalogPreview from "./pages/Catalog/StatusCatalogPreview";
 import StatusCatalogGallery from "./pages/Catalog/StatusCatalogGallery";
-import LandingPage from "./pages/LandingPage";
 import StaticLandingPage from "./pages/StaticLandingPage";
 import { GalleryConfigProvider } from "./context/GalleryConfigContext";
 import { LandingPageConfigProvider } from "./context/LandingPageConfigContext";
 import CollectionBuilder from "./pages/Builder/CollectionBuilder";
+import LandingPage from "./pages/Builder/LandingPageBuilder";
 import { CollectionConfigProvider } from "./context/colllection/CollectionConfigContext";
 
 export default function App() {
@@ -46,16 +46,6 @@ export default function App() {
           {/* Static Landing Page - Root Route */}
           <Route path="/" element={<StaticLandingPage />} />
 
-          {/* Main Landing Page */}
-          <Route
-            path="/abc"
-            element={
-              <LandingPageConfigProvider>
-                <LandingPage />
-              </LandingPageConfigProvider>
-            }
-          />
-
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
             <Route index path="/admin" element={<AdminDashboard />} />
@@ -66,6 +56,15 @@ export default function App() {
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/customers/add" element={<AddCustomer />} />
+
+            <Route
+              path="/builder/landingpage"
+              element={
+                <LandingPageConfigProvider>
+                  <LandingPage />
+                </LandingPageConfigProvider>
+              }
+            />
 
             <Route
               path="/builder/collection"

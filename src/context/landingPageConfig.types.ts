@@ -14,6 +14,7 @@ export interface HomePageConfig {
   navbar: {
     show: boolean;
     height: number;
+    type: "floating" | "sticky" | "static";
   };
   accentColor: string;
   showCategoryMenu: boolean;

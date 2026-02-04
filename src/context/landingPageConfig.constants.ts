@@ -87,6 +87,7 @@ export const defaultHomeConfig: HomePageConfig = {
   navbar: {
     height: 64,
     show: true,
+    type: "sticky",
   },
   showCategoryMenu: true,
   heroSection: {

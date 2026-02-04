@@ -99,6 +99,11 @@ const builderItems: NavItem[] = [
     name: "Collection Builder",
     path: "/builder/collection",
   },
+  {
+    icon: <PageIcon />,
+    name: "Landing Page Builder",
+    path: "/builder/landingpage",
+  },
 ];
 
 const othersItems: NavItem[] = [

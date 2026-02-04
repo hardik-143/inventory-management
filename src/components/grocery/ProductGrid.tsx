@@ -292,7 +292,7 @@ export default function ProductGrid({
 
         {/* View Toggle */}
         {/* bg-gray-100 */}
-        <div className="flex border bg-gray-100 border-gray-500 rounded-[10px] p-1 gap-2">
+        {/* <div className="flex border bg-gray-100 border-gray-500 rounded-[10px] p-1 gap-2">
           <button
             onClick={() => setViewMode("grid")}
             className={`p-2 rounded-md transition-colors ${
@@ -309,7 +309,7 @@ export default function ProductGrid({
           >
             <List className={`w-4 h-4`} />
           </button>
-        </div>
+        </div> */}
       </div>
       {/* </div> */}
 
