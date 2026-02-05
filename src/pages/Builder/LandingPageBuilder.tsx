@@ -24,7 +24,7 @@ export default function LandingPage() {
   const getHeaderStylesClasses = () => {
     switch (config.navbar.type) {
       case "floating":
-        return "sticky top-19";
+        return "sticky top-19 px-4";
       case "sticky":
         return "sticky top-19 border-b border-gray-300/50 bg-gray-25";
       case "static":
